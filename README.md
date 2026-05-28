@@ -15,9 +15,11 @@ Out-of-sample validation is standard across all projects. Look-ahead bias is han
 
 ![Strategy Comparison](charts/strategy_comparison.png)
 
-![FVG Breakdown](charts/fvg_breakdown.png)
-
 ![Strategy Radar](charts/strategy_radar.png)
+
+![Cross-Strategy Equity](charts/cross_strategy_equity.png)
+
+![Drawdown Comparison](charts/drawdown_comparison.png)
 
 | Strategy | Instruments | Trades | Sharpe | Win Rate | Profit Factor | Max DD |
 |----------|-------------|--------|--------|----------|---------------|--------|
@@ -120,6 +122,12 @@ Final signal is the product of all five layers. Interactive Plotly dashboard inc
 
 ICT Fair Value Gap setups backtested systematically across BTC, ES, NQ, FDAX, FESX, GC, NG. Gaps identified from OHLC bars, entry on retest, exit at next imbalance or time stop. 6,222 trades total, Sharpe 1.25. Best single instrument by Sharpe is NQ (1.95), best by average trade is BTC (€498.8/trade).
 
+![FVG Equity Curves](charts/fvg_equity_curves.png)
+
+![FVG Breakdown](charts/fvg_breakdown.png)
+
+![FVG Metrics](charts/fvg_metrics_bars.png)
+
 ---
 
 ### 7. Open Range Breakout
@@ -127,12 +135,16 @@ ICT Fair Value Gap setups backtested systematically across BTC, ES, NQ, FDAX, FE
 
 ORB on NQ 5-minute bars. Opening range is the first N bars after RTH open; entry on confirmed close outside range with BB confirmation. 923 trades, Sharpe 1.55, 64.4% win rate. Includes parameter grid with correlation analysis to check robustness across configurations.
 
+![ORB Equity Curve](charts/orb_equity_curve.png)
+
 ---
 
 ### 8. Sweep Retracement (NinjaTrader 8 / C#)
 `NT8 strat/HourSweepRetracement.cs`
 
 NinjaTrader 8 strategy in C# that detects hourly liquidity sweeps (stops taken above/below prior hour high/low) and enters on retracement back inside the range. Best configuration on NQ: Sharpe 2.45, win rate 60.4%, profit factor 1.56. Both long-bias and inverse variants in the repo.
+
+![Sweep Equity Curves](charts/sweep_equity_curves.png)
 
 ---
 
@@ -151,12 +163,16 @@ Three approaches tested on S&P 500 universe (103 tickers, Oct 2025):
 
 Approach D is a negative result — high trade frequency with short holding periods destroys signal. Kept in deliberately.
 
+![Screener Equity Curves](charts/screener_equity_curves.png)
+
 ---
 
 ### 10. FCF Screener
 `FCF.ipynb` · `screener v2/screener.py`
 
 S&P 500 ranking by FCF yield and growth consistency. Monthly rebalancing, 120-stock portfolio. Portfolio123-compatible output format.
+
+![FCF Screener Alpha](charts/fcf_screener_alpha.png)
 
 ---
 
@@ -171,6 +187,15 @@ CGBoost variants (`cgboost v80.py`, `cgboost v82.py`) explore custom boosting wi
 
 ---
 
+### 11. XGBoost Market Model (v72 series)
+`tutor-ai/`
+
+Multi-asset signal model across AAPL, GOOG, TSLA, MRNA, LLY, ETH-USD, SOL-USD and Nasdaq futures. The model stack combines GARCH-filtered returns, a 3-state Gaussian HMM for regime detection, fractionally differenced price series (d=0.5), Google Trends z-scores, transformer-based news sentiment, and XGBoost with RandomizedSearchCV tuning. Features are always lagged by one period; the OOS window is 6 months with 12 months validation and 10-day purge gaps between folds.
+
+The version history is tracked in `DIFFERENZE_V2.1_V2.2.md`. Signal generation, portfolio sizing, and live execution are split into separate scripts (`generate_signals.py`, `equity_optimizer.py`, `run_pipeline.py`). CGBoost variants (`cgboost v80.py`, `cgboost v82.py`) explore custom boosting with regime-conditional objectives. Two smoketests check that no forward-looking data leaks into the feature set.
+
+---
+
 ### 12. Sector Stat-Arb Suite
 `tutor-ai/stat_arb_biotech.py` · `stat_arb_commodity.py` · `stat_arb_macro.py` · `stat_arb_tech_momentum.py`
 
@@ -182,6 +207,10 @@ Four stat-arb modules each targeting a different market segment:
 - **Tech Momentum**: cross-sectional momentum with mean-reversion overlay on semiconductor/cloud pairs
 
 All four share the same spread construction (log-price, Kalman hedge ratio) and entry/exit logic (z-score thresholds, hard stop). Live signal output feeds into the main portfolio manager.
+
+![Cross-Asset Correlation](charts/cross_asset_correlation.png)
+
+![Pairs Sharpe Ranking](charts/pairs_sharpe_ranking.png)
 
 ---
 
@@ -198,6 +227,8 @@ Live and paper trading via IB Gateway on ports 4001/4002. The executor handles o
 Extension of the open-source TradingAgents framework (TauricResearch/TradingAgents, arxiv:2412.20138). The framework decomposes trading decisions across specialized LLM agents: fundamental analyst, sentiment analyst, news analyst, technical analyst, bull/bear researcher debate, trader, and portfolio manager with risk gating.
 
 The local extension adds a quarterly backtest pipeline (`quarterly_pipeline/`) tested on a megacap universe 2018–2025, a point-in-time feature pipeline (`feature_pipeline/`) that reconstructs realistic signal availability dates, a VWAP trend backtest (`vwap_trend_backtest.py`), a stat-arb pairs module (`statarb_pairs_backtest.py`), and a WRDS PEAD research scaffold (`wrds_pead_revisions_scaffold.py`).
+
+![TradingAgents Backtest](charts/tradingagents_backtest.png)
 
 The PEAD scaffold is designed for strict point-in-time integrity: signal availability is keyed to IBES filing dates rather than report period end, with an IBES-CRSP link for permno resolution and optional Compustat Point-in-Time enrichment. The spec documents the full dataset stack (IBES detail history, actuals, adjustment factors, CRSP daily) and the design constraints.
 

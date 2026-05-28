@@ -101,6 +101,8 @@ Bidirectional LSTM trained on weekly OHLCV + 10 technical features (RSI-14, MACD
 **Tested on:** AAPL, GOOG, AMZN, NFLX, MRNA, GC=F, BTC-USD  
 **Hardware:** NVIDIA RTX 4050 (6.4GB VRAM), PyTorch CUDA
 
+> **Methodology note:** A self-audit (`screener v2/AUDIT_REPORT.md`) identified a lookahead bias in the position sizing normalisation (`np.std(predictions)` computed over the full test set). The issue was documented and a fix proposed (use validation-set std instead). This is included in the repo as an example of the auditing discipline applied to all models.
+
 ---
 
 ### 5. Cross-Asset Correlation Signal Model (v3)
@@ -139,7 +141,24 @@ Live NinjaTrader 8 C# strategy detecting hourly liquidity sweeps and entering on
 
 ---
 
-### 9. FCF-Based Equity Screener
+### 9. Equity Screener — Multi-Approach Backtest
+`backtest_results/`
+
+![Screener Approaches](charts/screener_approaches.png)
+
+Three systematic long-only approaches tested on S&P 500 universe (Oct 2025, 103 tickers):
+
+| Approach | Trades | Win Rate | Sharpe | Total PnL |
+|----------|--------|----------|--------|-----------|
+| **A (v2)** | 662 | 71.1% | **3.71** | $7,164 |
+| **B (v2)** | 501 | 72.7% | **3.73** | $5,649 |
+| D (v2) | 1,744 | 58.8% | -0.91 | -$2,026 |
+
+Approach D (high-frequency signals on short holding periods) included deliberately as a negative result — showing that signal quality degrades with over-trading. Approach A and B (medium-frequency, fundamentals-augmented) achieve high win rates and Sharpe ratios above 3.5 net of 10bps commission.
+
+---
+
+### 10. FCF-Based Equity Screener
 `FCF.ipynb` · `screener v2/screener.py`
 
 S&P 500 screener ranking by FCF yield and growth consistency. Monthly rebalancing, 120-stock long portfolio. Portfolio123-compatible output.

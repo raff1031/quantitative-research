@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2021-10-01",
+  "created_on": "2026-05-10",
+  "trade_date": "2021-10-01",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "479887df697de17182473711a38094d2eaabceda4d51beb46f5340ed5f8eb070"
+  },
+  "decisions": [
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2021-10-01",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Exceptional 12m return (83%) with the lowest drawdown (-8.0%) and moderate volatility; a short-term 1m dip presents a strong entry point.",
+      "features": {
+        "ret_1m": -0.059721478250698845,
+        "ret_3m": 0.09009860548660953,
+        "ret_6m": 0.2306940408732765,
+        "ret_12m": 0.8353791563357025,
+        "vol_3m_ann": 0.189308068841497,
+        "drawdown_6m": -0.08045523306029734,
+        "rsi_14": 37.252715388284265,
+        "dist_sma_50": -0.017817531845022994,
+        "dist_sma_200": 0.17802356539305086,
+        "volume_trend_1m_vs_6m": 0.047562361093935523
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Exceptional 12m return (83%) with the lowest drawdown (-8.0%) and moderate volatility; a short-term 1m dip presents a strong entry point.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2021-10-01",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Strong risk-adjusted profile featuring the lowest volatility (16.5%), small drawdown, and resilient positive 3m momentum.",
+      "features": {
+        "ret_1m": -0.0421758773053178,
+        "ret_3m": 0.04323240002075357,
+        "ret_6m": 0.1656254084082931,
+        "ret_12m": 0.3732129809992879,
+        "vol_3m_ann": 0.1657056721859703,
+        "drawdown_6m": -0.08768193406295632,
+        "rsi_14": 42.13989822027455,
+        "dist_sma_50": -0.017424479686656613,
+        "dist_sma_200": 0.1258086474946929,
+        "volume_trend_1m_vs_6m": 0.02733809124924269
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Strong risk-adjusted profile featuring the lowest volatility (16.5%), small drawdown, and resilient positive 3m momentum.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2021-10-01",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Massive 6m and 12m gains, but carries the highest volatility (33.7%) and largest drawdown (-15.3%), suggesting momentum exhaustion.",
+      "features": {
+        "ret_1m": -0.07570961528109665,
+        "ret_3m": 0.012625719238806399,
+        "ret_6m": 0.48349718637921413,
+        "ret_12m": 0.5251173350477334,
+        "vol_3m_ann": 0.3377281597863171,
+        "drawdown_6m": -0.1531860414439734,
+        "rsi_14": 35.83201035895658,
+        "dist_sma_50": -0.015758612464276234,
+        "dist_sma_200": 0.24850080612813552,
+        "volume_trend_1m_vs_6m": -0.29637309035365644
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Massive 6m and 12m gains, but carries the highest volatility (33.7%) and largest drawdown (-15.3%), suggesting momentum exhaustion.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2021-10-01",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Average returns and moderate drawdown; lacks standout momentum but remains relatively stable above its 200-day SMA.",
+      "features": {
+        "ret_1m": -0.06465140896664379,
+        "ret_3m": 0.020746848555212916,
+        "ret_6m": 0.1366670561435246,
+        "ret_12m": 0.22927903283683237,
+        "vol_3m_ann": 0.20333927243470099,
+        "drawdown_6m": -0.09694312255146376,
+        "rsi_14": 33.429415995925666,
+        "dist_sma_50": -0.03557444756904171,
+        "dist_sma_200": 0.058930503793194644,
+        "volume_trend_1m_vs_6m": 0.05381738034950789
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Average returns and moderate drawdown; lacks standout momentum but remains relatively stable above its 200-day SMA.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2021-10-01",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Sharp 1m drop (-10.2%) and negative 3m return; RSI is deeply oversold (24.2), signaling a significant near-term trend deterioration.",
+      "features": {
+        "ret_1m": -0.10218551071300686,
+        "ret_3m": -0.03295757173409808,
+        "ret_6m": 0.11038820352891299,
+        "ret_12m": 0.2864642404622315,
+        "vol_3m_ann": 0.24453157974966275,
+        "drawdown_6m": -0.11196301490998861,
+        "rsi_14": 24.262575699001772,
+        "dist_sma_50": -0.05614272476042648,
+        "dist_sma_200": 0.08840341009697728,
+        "volume_trend_1m_vs_6m": 0.030449822290658846
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Sharp 1m drop (-10.2%) and negative 3m return; RSI is deeply oversold (24.2), signaling a significant near-term trend deterioration.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2021-10-01",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Weakest performance across all timeframes and the only asset trading below its 200-day SMA (-0.8%), indicating a clear downtrend.",
+      "features": {
+        "ret_1m": -0.05626330977394978,
+        "ret_3m": -0.06485939451770428,
+        "ret_6m": 0.0175192363365666,
+        "ret_12m": 0.0192470696348086,
+        "vol_3m_ann": 0.23815220870453074,
+        "drawdown_6m": -0.1456982711495235,
+        "rsi_14": 29.00498322591484,
+        "dist_sma_50": -0.032508308109431394,
+        "dist_sma_200": -0.008779356296767071,
+        "volume_trend_1m_vs_6m": -0.12785421995426893
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Weakest performance across all timeframes and the only asset trading below its 200-day SMA (-0.8%), indicating a clear downtrend.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

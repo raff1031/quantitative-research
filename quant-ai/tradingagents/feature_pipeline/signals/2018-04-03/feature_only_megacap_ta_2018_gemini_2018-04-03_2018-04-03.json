@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2018-04-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2018-04-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "efd8e3057ddaaeec2331aa8e3c7deefb31ecbe07705e105f542b19918acf617f"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2018-04-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "High 12m momentum (>100%) but elevated volatility; healthy 1m pullback presents a good entry above the 200-day SMA.",
+      "features": {
+        "ret_1m": -0.04730705933022117,
+        "ret_3m": 0.16532328604711966,
+        "ret_6m": 0.2622179903164745,
+        "ret_12m": 1.0754906441818948,
+        "vol_3m_ann": 0.46716209009581655,
+        "drawdown_6m": -0.14186950295493117,
+        "rsi_14": 38.49321631892675,
+        "dist_sma_50": -0.054889993118940605,
+        "dist_sma_200": 0.1435530283072619,
+        "volume_trend_1m_vs_6m": 0.09385600866448152
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: High 12m momentum (>100%) but elevated volatility; healthy 1m pullback presents a good entry above the 200-day SMA.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2018-04-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Stable uptrend with the lowest 6m drawdown and moderate volatility, indicating strong risk-adjusted momentum.",
+      "features": {
+        "ret_1m": -0.03589477515884376,
+        "ret_3m": 0.053675689724584474,
+        "ret_6m": 0.21605659590645288,
+        "ret_12m": 0.3906566796526585,
+        "vol_3m_ann": 0.32179816080027296,
+        "drawdown_6m": -0.10525216860467046,
+        "rsi_14": 40.96848727135103,
+        "dist_sma_50": -0.02515421675702001,
+        "dist_sma_200": 0.10895198868409905,
+        "volume_trend_1m_vs_6m": 0.32368048789964554
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Stable uptrend with the lowest 6m drawdown and moderate volatility, indicating strong risk-adjusted momentum.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2018-04-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Lowest volatility among peers with flat short-term returns; price is hovering near baseline 200-day SMA support.",
+      "features": {
+        "ret_1m": -0.04437912217074402,
+        "ret_3m": -0.0009069664736480743,
+        "ret_6m": 0.10098866899946257,
+        "ret_12m": 0.19068522392971143,
+        "vol_3m_ann": 0.2649915935640848,
+        "drawdown_6m": -0.13449753388884844,
+        "rsi_14": 32.80873947051745,
+        "dist_sma_50": -0.015077214662788552,
+        "dist_sma_200": 0.034581062684996056,
+        "volume_trend_1m_vs_6m": 0.04012536174838344
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Lowest volatility among peers with flat short-term returns; price is hovering near baseline 200-day SMA support.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2018-04-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Exceptional 3m/6m returns combined with a deeply oversold RSI (29.4) offer a highly attractive pullback entry.",
+      "features": {
+        "ret_1m": -0.07212126316029288,
+        "ret_3m": 0.1903255620241986,
+        "ret_6m": 0.44801579796909774,
+        "ret_12m": 0.5702055506268171,
+        "vol_3m_ann": 0.3210659865210708,
+        "drawdown_6m": -0.14164251997263255,
+        "rsi_14": 29.46240971163006,
+        "dist_sma_50": -0.05496112481025528,
+        "dist_sma_200": 0.19944928882574775,
+        "volume_trend_1m_vs_6m": 0.3687153837206183
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Exceptional 3m/6m returns combined with a deeply oversold RSI (29.4) offer a highly attractive pullback entry.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2018-04-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Deteriorating 1m/3m momentum and increasing volume on price drops, having recently slipped below its 200-day SMA.",
+      "features": {
+        "ret_1m": -0.06037964723880562,
+        "ret_3m": -0.03295996880373042,
+        "ret_6m": 0.046173429806818156,
+        "ret_12m": 0.20155690920993585,
+        "vol_3m_ann": 0.31100028526985934,
+        "drawdown_6m": -0.15357535834811664,
+        "rsi_14": 27.855865000531125,
+        "dist_sma_50": -0.07684057146751178,
+        "dist_sma_200": -0.006515387629617786,
+        "volume_trend_1m_vs_6m": 0.3295806723230097
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Deteriorating 1m/3m momentum and increasing volume on price drops, having recently slipped below its 200-day SMA.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2018-04-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Severe multi-month downtrend, deepest drawdown, and a massive volume surge (+101%) confirming heavy selling pressure.",
+      "features": {
+        "ret_1m": -0.11612498597063725,
+        "ret_3m": -0.11532364373749726,
+        "ret_6m": -0.08638149917774762,
+        "ret_12m": 0.09897928980950543,
+        "vol_3m_ann": 0.3507644396011715,
+        "drawdown_6m": -0.21166280325092401,
+        "rsi_14": 25.802789453285882,
+        "dist_sma_50": -0.12086759473015651,
+        "dist_sma_200": -0.09735743623264104,
+        "volume_trend_1m_vs_6m": 1.015129892734791
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Severe multi-month downtrend, deepest drawdown, and a massive volume surge (+101%) confirming heavy selling pressure.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

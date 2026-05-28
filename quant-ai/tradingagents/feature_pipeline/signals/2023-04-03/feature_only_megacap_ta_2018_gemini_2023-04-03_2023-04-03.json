@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2023-04-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2023-04-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "94ce8b0e6fee38fb584d512f95b75fb862af50622c64ba3e7da1a34bfc11c6f2"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2023-04-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Extreme overbought conditions (RSI 85.7) and highly overextended from moving averages (+61% above 200 SMA) signal severe mean reversion risk.",
+      "features": {
+        "ret_1m": 0.17077244662659208,
+        "ret_3m": 0.9139009303660672,
+        "ret_6m": 1.304712517586736,
+        "ret_12m": 0.025842518093663225,
+        "vol_3m_ann": 0.5368437813988032,
+        "drawdown_6m": -0.22332884378396745,
+        "rsi_14": 85.70644453279985,
+        "dist_sma_50": 0.20457515429205775,
+        "dist_sma_200": 0.613903074792407,
+        "volume_trend_1m_vs_6m": -0.01891681027525971
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Extreme overbought conditions (RSI 85.7) and highly overextended from moving averages (+61% above 200 SMA) signal severe mean reversion risk.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2023-04-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Strong, consistent momentum with the lowest 6m drawdown (-14.5%), manageable volatility, and expanding volume indicating a robust, healthy uptrend.",
+      "features": {
+        "ret_1m": 0.12511267382606905,
+        "ret_3m": 0.2006897078144403,
+        "ret_6m": 0.23984947658584987,
+        "ret_12m": -0.05923305659090805,
+        "vol_3m_ann": 0.29966489431733856,
+        "drawdown_6m": -0.14525648025375038,
+        "rsi_14": 73.34055143462521,
+        "dist_sma_50": 0.09985722791352747,
+        "dist_sma_200": 0.13797715604321192,
+        "volume_trend_1m_vs_6m": 0.05194239813602364
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Strong, consistent momentum with the lowest 6m drawdown (-14.5%), manageable volatility, and expanding volume indicating a robust, healthy uptrend.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2023-04-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Solid returns and the lowest volatility among peers, but an elevated RSI (79) and contracting volume suggest the current trend may be pausing.",
+      "features": {
+        "ret_1m": 0.10024487116820602,
+        "ret_3m": 0.28087230920383965,
+        "ret_6m": 0.20622161383910287,
+        "ret_12m": -0.042571251693177325,
+        "vol_3m_ann": 0.2392792282249662,
+        "drawdown_6m": -0.1959201703086595,
+        "rsi_14": 79.04189475858671,
+        "dist_sma_50": 0.09346897078154126,
+        "dist_sma_200": 0.12042536264102255,
+        "volume_trend_1m_vs_6m": -0.12546377897461958
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Solid returns and the lowest volatility among peers, but an elevated RSI (79) and contracting volume suggest the current trend may be pausing.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2023-04-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Remains in a long-term downtrend (below 200 SMA, -37% 12m return) with steep prior drawdowns and significant volume contraction (-21%).",
+      "features": {
+        "ret_1m": 0.0791359537985099,
+        "ret_3m": 0.2191667102632069,
+        "ret_6m": -0.09371678175124443,
+        "ret_12m": -0.37170812315510915,
+        "vol_3m_ann": 0.3836452757038421,
+        "drawdown_6m": -0.3243042186035504,
+        "rsi_14": 68.17962625202478,
+        "dist_sma_50": 0.04410083190210301,
+        "dist_sma_200": -0.04722915400040684,
+        "volume_trend_1m_vs_6m": -0.2103719765894444
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Remains in a long-term downtrend (below 200 SMA, -37% 12m return) with steep prior drawdowns and significant volume contraction (-21%).",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2023-04-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Promising trend reversal, successfully crossing above the 200 SMA with positive 1m/3m/6m returns and supportive, expanding volume.",
+      "features": {
+        "ret_1m": 0.114361992240686,
+        "ret_3m": 0.18281766238567143,
+        "ret_6m": 0.09106100246021698,
+        "ret_12m": -0.24957319326225047,
+        "vol_3m_ann": 0.3829260915218836,
+        "drawdown_6m": -0.2014740379411296,
+        "rsi_14": 71.26484411358514,
+        "dist_sma_50": 0.06991120846727261,
+        "dist_sma_200": 0.030641921203530265,
+        "volume_trend_1m_vs_6m": 0.04596509861576181
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Promising trend reversal, successfully crossing above the 200 SMA with positive 1m/3m/6m returns and supportive, expanding volume.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2023-04-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Massive recent rally paired with the highest volatility (57%) and deep historical drawdowns, driven by sharply declining volume (-24%) suggesting rally exhaustion.",
+      "features": {
+        "ret_1m": 0.15017551036807864,
+        "ret_3m": 0.7705667105505627,
+        "ret_6m": 0.5703860807062338,
+        "ret_12m": -0.0417791072580711,
+        "vol_3m_ann": 0.574919359539498,
+        "drawdown_6m": -0.3661961786953154,
+        "rsi_14": 67.95478441457243,
+        "dist_sma_50": 0.1772004865475756,
+        "dist_sma_200": 0.4127169210467623,
+        "volume_trend_1m_vs_6m": -0.24125296856798484
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Massive recent rally paired with the highest volatility (57%) and deep historical drawdowns, driven by sharply declining volume (-24%) suggesting rally exhaustion.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

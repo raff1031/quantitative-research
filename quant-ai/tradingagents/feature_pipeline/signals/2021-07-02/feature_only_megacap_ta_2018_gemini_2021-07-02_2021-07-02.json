@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2021-07-02",
+  "created_on": "2026-05-10",
+  "trade_date": "2021-07-02",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "b89c9a53c99c7fdc5623811cdc1bbfa3d50bfa785281ca8d8ab8a5b86ad39fa0"
+  },
+  "decisions": [
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2021-07-02",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Exceptional multi-timeframe trend with minimal drawdown (-8%) and low volatility, while RSI remains at a healthy, sustainable level (63).",
+      "features": {
+        "ret_1m": 0.06712019180830175,
+        "ret_3m": 0.12897497041004535,
+        "ret_6m": 0.4293580368658667,
+        "ret_12m": 0.704264940237793,
+        "vol_3m_ann": 0.1872969012754717,
+        "drawdown_6m": -0.08045523306029734,
+        "rsi_14": 63.11200512495669,
+        "dist_sma_50": 0.05799278842834843,
+        "dist_sma_200": 0.26942127449793185,
+        "volume_trend_1m_vs_6m": -0.23452884116131345
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Exceptional multi-timeframe trend with minimal drawdown (-8%) and low volatility, while RSI remains at a healthy, sustainable level (63).",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2021-07-02",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Strong momentum and manageable drawdown with a healthy RSI, offering solid risk-adjusted returns despite slightly higher volatility.",
+      "features": {
+        "ret_1m": 0.08790367237740893,
+        "ret_3m": 0.1482311127962177,
+        "ret_6m": 0.2985067013946634,
+        "ret_12m": 0.5195785721236426,
+        "vol_3m_ann": 0.269921515049207,
+        "drawdown_6m": -0.09700414994048145,
+        "rsi_14": 64.34637347752601,
+        "dist_sma_50": 0.08626367040726612,
+        "dist_sma_200": 0.2351616071587943,
+        "volume_trend_1m_vs_6m": -0.16198383004857952
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Strong momentum and manageable drawdown with a healthy RSI, offering solid risk-adjusted returns despite slightly higher volatility.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2021-07-02",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Consistent but relatively lower returns across all timeframes, though it maintains a healthy RSI and a moderate risk profile.",
+      "features": {
+        "ret_1m": 0.10165328729888579,
+        "ret_3m": 0.08809224021641593,
+        "ret_6m": 0.07800290246495889,
+        "ret_12m": 0.21474585138637314,
+        "vol_3m_ann": 0.19955575887368765,
+        "drawdown_6m": -0.1266419901650333,
+        "rsi_14": 64.5284972213657,
+        "dist_sma_50": 0.054198586184873054,
+        "dist_sma_200": 0.08929258598264944,
+        "volume_trend_1m_vs_6m": -0.12064769050422941
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Consistent but relatively lower returns across all timeframes, though it maintains a healthy RSI and a moderate risk profile.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2021-07-02",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Solid historical trend and low drawdown, but the RSI is approaching overbought levels (79) on declining volume, suggesting a near-term pause.",
+      "features": {
+        "ret_1m": 0.12999069432524313,
+        "ret_3m": 0.11732094247178737,
+        "ret_6m": 0.25407837178280457,
+        "ret_12m": 0.35915050549930516,
+        "vol_3m_ann": 0.18091382578944307,
+        "drawdown_6m": -0.08768193406295632,
+        "rsi_14": 79.07686761083167,
+        "dist_sma_50": 0.09061102651529707,
+        "dist_sma_200": 0.1976701728218646,
+        "volume_trend_1m_vs_6m": -0.16569100543114634
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Solid historical trend and low drawdown, but the RSI is approaching overbought levels (79) on declining volume, suggesting a near-term pause.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2021-07-02",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Overbought RSI (>80) and weaker 6-month relative returns indicate choppiness, accompanied by a significant decline in volume.",
+      "features": {
+        "ret_1m": 0.13291226815769197,
+        "ret_3m": 0.1135641101928333,
+        "ret_6m": 0.05815991108168195,
+        "ret_12m": 0.5479176570981865,
+        "vol_3m_ann": 0.2070831823053229,
+        "drawdown_6m": -0.18598850284853308,
+        "rsi_14": 80.46287790002272,
+        "dist_sma_50": 0.08132139548706419,
+        "dist_sma_200": 0.11874488751555701,
+        "volume_trend_1m_vs_6m": -0.23669567837275607
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Overbought RSI (>80) and weaker 6-month relative returns indicate choppiness, accompanied by a significant decline in volume.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2021-07-02",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Extreme overbought conditions (RSI > 82), highly stretched above moving averages (+43% vs 200 SMA), and elevated historical drawdown risk (-24%).",
+      "features": {
+        "ret_1m": 0.20754241172740207,
+        "ret_3m": 0.4650005013642782,
+        "ret_6m": 0.5701849218972583,
+        "ret_12m": 1.1338350793159009,
+        "vol_3m_ann": 0.36210840165317176,
+        "drawdown_6m": -0.2437664171353593,
+        "rsi_14": 82.59513324157375,
+        "dist_sma_50": 0.23878639022830717,
+        "dist_sma_200": 0.4362605691286665,
+        "volume_trend_1m_vs_6m": 0.2501019127492805
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Extreme overbought conditions (RSI > 82), highly stretched above moving averages (+43% vs 200 SMA), and elevated historical drawdown risk (-24%).",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

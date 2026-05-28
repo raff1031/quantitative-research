@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2025-07-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2025-07-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "f4ca312f5554cba87c49f43e383215e666cc29742c26522d87e83ffe18887738"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2025-07-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Extreme short-term momentum has left it overbought (RSI > 70) and severely overextended from its SMAs on sharply declining volume, elevating reversal risk.",
+      "features": {
+        "ret_1m": 0.12838884780228454,
+        "ret_3m": 0.4431359350249766,
+        "ret_6m": 0.1591078947625515,
+        "ret_12m": 0.28230358899358765,
+        "vol_3m_ann": 0.581050193620965,
+        "drawdown_6m": -0.36881026403302364,
+        "rsi_14": 70.97716161007301,
+        "dist_sma_50": 0.18841966595559856,
+        "dist_sma_200": 0.2256126011224544,
+        "volume_trend_1m_vs_6m": -0.28516951657928014
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Extreme short-term momentum has left it overbought (RSI > 70) and severely overextended from its SMAs on sharply declining volume, elevating reversal risk.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2025-07-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Exhibits the lowest volatility and shallowest drawdown among peers, maintaining strong, steady momentum above moving averages.",
+      "features": {
+        "ret_1m": 0.07747797633929565,
+        "ret_3m": 0.3077818967332695,
+        "ret_6m": 0.17872530330364178,
+        "ret_12m": 0.10057266194416847,
+        "vol_3m_ann": 0.32134608259436015,
+        "drawdown_6m": -0.20556585675172157,
+        "rsi_14": 69.45256382350198,
+        "dist_sma_50": 0.09464183302589158,
+        "dist_sma_200": 0.17889902292581739,
+        "volume_trend_1m_vs_6m": -0.13029821191540403
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Exhibits the lowest volatility and shallowest drawdown among peers, maintaining strong, steady momentum above moving averages.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2025-07-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Highly overbought (RSI > 74) on a short-term bounce within a broader longer-term downtrend, remaining below its 200-day SMA.",
+      "features": {
+        "ret_1m": 0.050573115696545434,
+        "ret_3m": -0.04493256364387821,
+        "ret_6m": -0.15120874738211754,
+        "ret_12m": -0.010155923941347234,
+        "vol_3m_ann": 0.49677747540954115,
+        "drawdown_6m": -0.31071969306401204,
+        "rsi_14": 74.80119923246583,
+        "dist_sma_50": 0.048617944529376844,
+        "dist_sma_200": -0.04094938636384737,
+        "volume_trend_1m_vs_6m": -0.013771817321131752
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Highly overbought (RSI > 74) on a short-term bounce within a broader longer-term downtrend, remaining below its 200-day SMA.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2025-07-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Displays average momentum and volatility, trading safely above both SMAs with a neutral RSI, lacking strong directional conviction.",
+      "features": {
+        "ret_1m": 0.08604344159524557,
+        "ret_3m": 0.13978883691218025,
+        "ret_6m": 0.009534571085650034,
+        "ret_12m": 0.1329107866099326,
+        "vol_3m_ann": 0.4492833129189678,
+        "drawdown_6m": -0.3087663843187606,
+        "rsi_14": 63.321968202418454,
+        "dist_sma_50": 0.09053900933588777,
+        "dist_sma_200": 0.08630724964596848,
+        "volume_trend_1m_vs_6m": -0.035273789715767334
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Displays average momentum and volatility, trading safely above both SMAs with a neutral RSI, lacking strong directional conviction.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2025-07-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Emerging uptrend crossing above both 50-day and 200-day SMAs with a neutral RSI and the only positive volume trend in the group, indicating healthy accumulation.",
+      "features": {
+        "ret_1m": 0.08164246306990086,
+        "ret_3m": 0.14459601983539927,
+        "ret_6m": -0.05901311618116567,
+        "ret_12m": -0.014155870014740835,
+        "vol_3m_ann": 0.37990017233962153,
+        "drawdown_6m": -0.29805878729523905,
+        "rsi_14": 55.562001128221986,
+        "dist_sma_50": 0.07029138382457178,
+        "dist_sma_200": 0.0416691087038461,
+        "volume_trend_1m_vs_6m": 0.10957105072486861
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Emerging uptrend crossing above both 50-day and 200-day SMAs with a neutral RSI and the only positive volume trend in the group, indicating healthy accumulation.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2025-07-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Outstanding 6m and 12m returns with a healthy RSI (59) suggest a robust primary trend, though elevated volatility and falling volume cap the rating.",
+      "features": {
+        "ret_1m": 0.07904805599057108,
+        "ret_3m": 0.23227645400637797,
+        "ret_6m": 0.21812365356521157,
+        "ret_12m": 0.429563225498905,
+        "vol_3m_ann": 0.5060276502995137,
+        "drawdown_6m": -0.3415081510267258,
+        "rsi_14": 59.16983842256958,
+        "dist_sma_50": 0.10635326766375974,
+        "dist_sma_200": 0.17210339676051722,
+        "volume_trend_1m_vs_6m": -0.2297287241199072
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Outstanding 6m and 12m returns with a healthy RSI (59) suggest a robust primary trend, though elevated volatility and falling volume cap the rating.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

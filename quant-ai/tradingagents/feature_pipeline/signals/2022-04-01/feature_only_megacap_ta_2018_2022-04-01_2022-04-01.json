@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 2022-04-01",
+  "created_on": "2026-05-10",
+  "trade_date": "2022-04-01",
+  "provider": "openai",
+  "quick_model": "gpt-5.4-mini",
+  "deep_model": "gpt-5.4-mini",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "eddc5121b731ce9460623166a7d0eff0f1afeb1c5f45ce03146406576332f279"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2022-04-01",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Strong 6m/12m momentum with positive SMA distances, but elevated volatility, deep drawdown, and a high RSI temper conviction.",
+      "features": {
+        "ret_1m": 0.12642304356388356,
+        "ret_3m": -0.0916137236592699,
+        "ret_6m": 0.28819872239201416,
+        "ret_12m": 0.9110387882940385,
+        "vol_3m_ann": 0.6483955693202403,
+        "drawdown_6m": -0.36073090165230004,
+        "rsi_14": 71.7261524130793,
+        "dist_sma_50": 0.08828604504535309,
+        "dist_sma_200": 0.10299186757805345,
+        "volume_trend_1m_vs_6m": 0.09789307000728908
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Strong 6m/12m momentum with positive SMA distances, but elevated volatility, deep drawdown, and a high RSI temper conviction.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2022-04-01",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Moderate positive 6m/12m returns and acceptable volatility, but the recent 3m trend is negative and RSI is stretched.",
+      "features": {
+        "ret_1m": 0.04562065661473835,
+        "ret_3m": -0.07808095067608345,
+        "ret_6m": 0.07446258215152923,
+        "ret_12m": 0.2524206344671329,
+        "vol_3m_ann": 0.32369521603040713,
+        "drawdown_6m": -0.1943682345061034,
+        "rsi_14": 77.62141242442273,
+        "dist_sma_50": 0.040208287914846874,
+        "dist_sma_200": 0.02215408940117447,
+        "volume_trend_1m_vs_6m": -0.000441855223919041
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Moderate positive 6m/12m returns and acceptable volatility, but the recent 3m trend is negative and RSI is stretched.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2022-04-01",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Solid 6m/12m performance with positive trend and moderate volatility, though RSI is very overbought and drawdown is still notable.",
+      "features": {
+        "ret_1m": 0.04860705003324961,
+        "ret_3m": -0.017108544234767598,
+        "ret_6m": 0.22528403943847297,
+        "ret_12m": 0.39274008869993793,
+        "vol_3m_ann": 0.2991566656790826,
+        "drawdown_6m": -0.17140878816182237,
+        "rsi_14": 85.90470516647304,
+        "dist_sma_50": 0.04390684027247205,
+        "dist_sma_200": 0.1144167639526581,
+        "volume_trend_1m_vs_6m": 0.04450137647349539
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Solid 6m/12m performance with positive trend and moderate volatility, though RSI is very overbought and drawdown is still notable.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2022-04-01",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Weak longer-term returns, negative 6m return, and a below-200 SMA signal outweigh the strong 1m bounce.",
+      "features": {
+        "ret_1m": 0.10589356334618016,
+        "ret_3m": -0.018936267871991208,
+        "ret_6m": -0.0036731592794815304,
+        "ret_12m": 0.013781726111566028,
+        "vol_3m_ann": 0.48040612894674034,
+        "drawdown_6m": -0.2640027465375371,
+        "rsi_14": 79.09472356341492,
+        "dist_sma_50": 0.07138110971641987,
+        "dist_sma_200": -0.017454422345012932,
+        "volume_trend_1m_vs_6m": 0.02789261062405246
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Weak longer-term returns, negative 6m return, and a below-200 SMA signal outweigh the strong 1m bounce.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2022-04-01",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Mixed profile with positive 12m return but weak recent momentum, modest volatility, and a small negative volume trend.",
+      "features": {
+        "ret_1m": 0.04668421938562428,
+        "ret_3m": -0.03245728929505931,
+        "ret_6m": 0.026420120043312068,
+        "ret_12m": 0.2632088952552769,
+        "vol_3m_ann": 0.34813763606960246,
+        "drawdown_6m": -0.15942155099123967,
+        "rsi_14": 78.69344121579799,
+        "dist_sma_50": 0.03705000499381916,
+        "dist_sma_200": 0.016099665341101632,
+        "volume_trend_1m_vs_6m": -0.0643923127583409
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Mixed profile with positive 12m return but weak recent momentum, modest volatility, and a small negative volume trend.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2022-04-01",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Large negative 3m/6m/12m returns, deepest drawdown, negative 200-day SMA distance, and very high volatility indicate persistent weakness.",
+      "features": {
+        "ret_1m": 0.10779912821907711,
+        "ret_3m": -0.33149988857593826,
+        "ret_6m": -0.3444797388146861,
+        "ret_12m": -0.2721181797508211,
+        "vol_3m_ann": 0.6718506791291801,
+        "drawdown_6m": -0.4630279833007792,
+        "rsi_14": 77.45694447636033,
+        "dist_sma_50": -0.01798587211383662,
+        "dist_sma_200": -0.2873211191896835,
+        "volume_trend_1m_vs_6m": 0.0672989048790471
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Large negative 3m/6m/12m returns, deepest drawdown, negative 200-day SMA distance, and very high volatility indicate persistent weakness.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

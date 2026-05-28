@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 2018-01-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2018-01-03",
+  "provider": "openai",
+  "quick_model": "gpt-5.4-mini",
+  "deep_model": "gpt-5.4-mini",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "c04e570e6854f62effb7329a0d321bad02fe3e4ed5fbfea6d6cbe14245fc8ef3"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2018-01-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Best momentum across 1m/3m/6m/12m with strong trend vs SMA50/200, despite elevated RSI and volatility.",
+      "features": {
+        "ret_1m": 0.074817970324355,
+        "ret_3m": 0.1853573935833881,
+        "ret_6m": 0.4876252494083042,
+        "ret_12m": 1.0909493496445464,
+        "vol_3m_ann": 0.3242692147751016,
+        "drawdown_6m": -0.14186969337185174,
+        "rsi_14": 73.54674577384407,
+        "dist_sma_50": 0.053323673630363944,
+        "dist_sma_200": 0.3138650932533864,
+        "volume_trend_1m_vs_6m": -0.18447792255563356
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Best momentum across 1m/3m/6m/12m with strong trend vs SMA50/200, despite elevated RSI and volatility.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2018-01-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Solid positive returns across all horizons with lower volatility and mild drawdown; momentum is good but less strong than the top name.",
+      "features": {
+        "ret_1m": 0.02480406148190495,
+        "ret_3m": 0.16864550237401765,
+        "ret_6m": 0.26297077589044715,
+        "ret_12m": 0.41064327756234187,
+        "vol_3m_ann": 0.18731942901480977,
+        "drawdown_6m": -0.04476901855832727,
+        "rsi_14": 56.6036282841305,
+        "dist_sma_50": 0.03179077714352463,
+        "dist_sma_200": 0.1715491892074894,
+        "volume_trend_1m_vs_6m": 0.10310370806054281
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Solid positive returns across all horizons with lower volatility and mild drawdown; momentum is good but less strong than the top name.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2018-01-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Positive but moderate returns, near-neutral RSI, and the weakest trend/momentum profile versus peers.",
+      "features": {
+        "ret_1m": 0.0068984889646004355,
+        "ret_3m": 0.11890937747258512,
+        "ret_6m": 0.2043023170575855,
+        "ret_12m": 0.5066689810370908,
+        "vol_3m_ann": 0.1782301384415205,
+        "drawdown_6m": -0.08229178074622345,
+        "rsi_14": 51.52210985487349,
+        "dist_sma_50": 0.010693393370138526,
+        "dist_sma_200": 0.10838004528119782,
+        "volume_trend_1m_vs_6m": -0.04090010708080882
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Positive but moderate returns, near-neutral RSI, and the weakest trend/momentum profile versus peers.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2018-01-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Strong 3m and 12m performance with decent trend vs SMAs, though volatility is relatively high and volume trend is weak.",
+      "features": {
+        "ret_1m": 0.03600462456762821,
+        "ret_3m": 0.25817573211618017,
+        "ret_6m": 0.2396540964131164,
+        "ret_12m": 0.5977815667009465,
+        "vol_3m_ann": 0.30087183475328627,
+        "drawdown_6m": -0.10847262824238402,
+        "rsi_14": 66.47571761733116,
+        "dist_sma_50": 0.05797457118095806,
+        "dist_sma_200": 0.19552869409807538,
+        "volume_trend_1m_vs_6m": -0.17611712796754708
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Strong 3m and 12m performance with decent trend vs SMAs, though volatility is relatively high and volume trend is weak.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2018-01-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Consistent gains and acceptable risk, but trailing returns are weaker than the better-ranked assets and RSI is already elevated.",
+      "features": {
+        "ret_1m": 0.06482469202470442,
+        "ret_3m": 0.1228705454322152,
+        "ret_6m": 0.17083213894303184,
+        "ret_12m": 0.3508744772077279,
+        "vol_3m_ann": 0.1625954352542199,
+        "drawdown_6m": -0.07757130278508917,
+        "rsi_14": 70.14043264125712,
+        "dist_sma_50": 0.043788003134076714,
+        "dist_sma_200": 0.12813772244656385,
+        "volume_trend_1m_vs_6m": -0.06016766837360066
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Consistent gains and acceptable risk, but trailing returns are weaker than the better-ranked assets and RSI is already elevated.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2018-01-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Reasonable multi-horizon returns and moderate risk, but momentum is not as compelling as the stronger names and short-term volume is flat.",
+      "features": {
+        "ret_1m": 0.05465447356723874,
+        "ret_3m": 0.08654984676662658,
+        "ret_6m": 0.2283490961404735,
+        "ret_12m": 0.5802670253148317,
+        "vol_3m_ann": 0.1934886737331682,
+        "drawdown_6m": -0.06315894191530991,
+        "rsi_14": 68.99949369851717,
+        "dist_sma_50": 0.03628897313465296,
+        "dist_sma_200": 0.13126703648279636,
+        "volume_trend_1m_vs_6m": -0.014702701002007879
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Reasonable multi-horizon returns and moderate risk, but momentum is not as compelling as the stronger names and short-term volume is flat.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2025-10-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2025-10-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "d6683237259f2da78fe3d0355a19e4be287e1e65cc17eb75ca3f9bd41eb89fae"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2025-10-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Strong multi-timeframe momentum and healthy RSI, though declining volume suggests minor exhaustion.",
+      "features": {
+        "ret_1m": 0.0930360228950089,
+        "ret_3m": 0.1857340953450839,
+        "ret_6m": 0.8432574067169185,
+        "ret_12m": 0.6040495927288212,
+        "vol_3m_ann": 0.27063256176509587,
+        "drawdown_6m": -0.15236587326426743,
+        "rsi_14": 62.15216335033991,
+        "dist_sma_50": 0.053495641427560914,
+        "dist_sma_200": 0.31163382159651776,
+        "volume_trend_1m_vs_6m": -0.12781886759195316
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Strong multi-timeframe momentum and healthy RSI, though declining volume suggests minor exhaustion.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2025-10-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Low volatility and minimal drawdown indicate steady performance, but lacks explosive momentum.",
+      "features": {
+        "ret_1m": 0.018465475145376775,
+        "ret_3m": 0.04114838673470622,
+        "ret_6m": 0.39141746916987397,
+        "ret_12m": 0.2389977914670176,
+        "vol_3m_ann": 0.16043863679026898,
+        "drawdown_6m": -0.08033492823720101,
+        "rsi_14": 52.01614255322584,
+        "dist_sma_50": 0.00918436004547818,
+        "dist_sma_200": 0.14762772965664506,
+        "volume_trend_1m_vs_6m": -0.04134957027257291
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Low volatility and minimal drawdown indicate steady performance, but lacks explosive momentum.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2025-10-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "High short-term returns have pushed RSI near 80, signaling extremely overbought conditions and pullback risk.",
+      "features": {
+        "ret_1m": 0.07606969198807878,
+        "ret_3m": 0.2303540744444028,
+        "ret_6m": 0.27295428364940677,
+        "ret_12m": 0.1459299170730992,
+        "vol_3m_ann": 0.23999092983293088,
+        "drawdown_6m": -0.0847223964533963,
+        "rsi_14": 79.64407637138157,
+        "dist_sma_50": 0.10894477534089142,
+        "dist_sma_200": 0.16333173194740191,
+        "volume_trend_1m_vs_6m": 0.007552777506158792
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: High short-term returns have pushed RSI near 80, signaling extremely overbought conditions and pullback risk.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2025-10-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Negative short-term momentum and oversold RSI, but stabilizing just above the 200-day SMA support level.",
+      "features": {
+        "ret_1m": -0.06860997399635005,
+        "ret_3m": -0.017720529342800773,
+        "ret_6m": 0.2303681968560789,
+        "ret_12m": 0.18570727984254098,
+        "vol_3m_ann": 0.2814922941584397,
+        "drawdown_6m": -0.12443745693244856,
+        "rsi_14": 31.00702594332857,
+        "dist_sma_50": -0.03129376698022024,
+        "dist_sma_200": 0.022957448877285014,
+        "volume_trend_1m_vs_6m": 0.007065689132845332
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Negative short-term momentum and oversold RSI, but stabilizing just above the 200-day SMA support level.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2025-10-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Exceptional medium-term returns with remarkably low drawdown; RSI of 36 presents a compelling buy-the-dip opportunity.",
+      "features": {
+        "ret_1m": 0.057121985957262256,
+        "ret_3m": 0.389046034485488,
+        "ret_6m": 0.6312815228558515,
+        "ret_12m": 0.47572903065005656,
+        "vol_3m_ann": 0.2593319966489024,
+        "drawdown_6m": -0.07813162036760757,
+        "rsi_14": 36.57806266294246,
+        "dist_sma_50": 0.11143942633416737,
+        "dist_sma_200": 0.31815793117903657,
+        "volume_trend_1m_vs_6m": -0.1296767277721408
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Exceptional medium-term returns with remarkably low drawdown; RSI of 36 presents a compelling buy-the-dip opportunity.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2025-10-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Highest volatility and drawdown, breaking below the 50-day SMA with strong downside momentum.",
+      "features": {
+        "ret_1m": -0.05023770662809124,
+        "ret_3m": -0.010176742701397457,
+        "ret_6m": 0.3385250650900331,
+        "ret_12m": 0.23648109448539012,
+        "vol_3m_ann": 0.31205434585741193,
+        "drawdown_6m": -0.17261043952552246,
+        "rsi_14": 27.877544514180272,
+        "dist_sma_50": -0.05546515384843098,
+        "dist_sma_200": 0.06657152224921026,
+        "volume_trend_1m_vs_6m": -0.11294174568199467
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Highest volatility and drawdown, breaking below the 50-day SMA with strong downside momentum.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

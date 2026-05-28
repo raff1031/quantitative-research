@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2018-01-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2018-01-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "45990c126eb94cf17b2bb9fa6f6540a34835b85eb95bddf5c9d7487c77911bf1"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2018-01-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Extreme momentum and high returns, but technically overextended (RSI > 73, 31% above 200-SMA), with the highest volatility, largest drawdown, and sharply declining volume indicating trend exhaustion.",
+      "features": {
+        "ret_1m": 0.07481785815099462,
+        "ret_3m": 0.18535750119121874,
+        "ret_6m": 0.48762538445628767,
+        "ret_12m": 1.0909499363634034,
+        "vol_3m_ann": 0.32427065168148655,
+        "drawdown_6m": -0.14186950295493117,
+        "rsi_14": 73.54650845390645,
+        "dist_sma_50": 0.05332375917999288,
+        "dist_sma_200": 0.31386520390822503,
+        "volume_trend_1m_vs_6m": -0.18447792255563356
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Extreme momentum and high returns, but technically overextended (RSI > 73, 31% above 200-SMA), with the highest volatility, largest drawdown, and sharply declining volume indicating trend exhaustion.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2018-01-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "High-quality, steady uptrend with the lowest drawdown (-4.4%), healthy momentum, neutral RSI (56), manageable volatility, and the only positive volume trend (+10.3%) in the group.",
+      "features": {
+        "ret_1m": 0.024804256381463885,
+        "ret_3m": 0.16864610294403914,
+        "ret_6m": 0.26297121749903085,
+        "ret_12m": 0.4106437808346368,
+        "vol_3m_ann": 0.1873200015869318,
+        "drawdown_6m": -0.044769022943576986,
+        "rsi_14": 56.603770894150564,
+        "dist_sma_50": 0.03179108748285264,
+        "dist_sma_200": 0.17154953752786617,
+        "volume_trend_1m_vs_6m": 0.10310370806054281
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: High-quality, steady uptrend with the lowest drawdown (-4.4%), healthy momentum, neutral RSI (56), manageable volatility, and the only positive volume trend (+10.3%) in the group.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2018-01-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Stable long-term returns but recent momentum is cooling (0.6% 1m return) with a neutral RSI (51.5) and average volume contraction. Consolidating trend.",
+      "features": {
+        "ret_1m": 0.006898394304909461,
+        "ret_3m": 0.11890952117815146,
+        "ret_6m": 0.20430195175338595,
+        "ret_12m": 0.5066686957819031,
+        "vol_3m_ann": 0.17822939806429122,
+        "drawdown_6m": -0.08229158947074755,
+        "rsi_14": 51.52192825964603,
+        "dist_sma_50": 0.010693186545273292,
+        "dist_sma_200": 0.10837981740759939,
+        "volume_trend_1m_vs_6m": -0.04090010708080882
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Stable long-term returns but recent momentum is cooling (0.6% 1m return) with a neutral RSI (51.5) and average volume contraction. Consolidating trend.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2018-01-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Strong recent 3-month spike but carries high volatility (30%), a relatively deep drawdown (-10.8%), and sharply contracting volume (-17.6%), suggesting weak underlying participation.",
+      "features": {
+        "ret_1m": 0.03600462456762821,
+        "ret_3m": 0.25817573211618017,
+        "ret_6m": 0.2396540964131164,
+        "ret_12m": 0.5977815667009465,
+        "vol_3m_ann": 0.30087183475328627,
+        "drawdown_6m": -0.10847262824238402,
+        "rsi_14": 66.47571761733116,
+        "dist_sma_50": 0.05797457118095806,
+        "dist_sma_200": 0.19552869409807538,
+        "volume_trend_1m_vs_6m": -0.17611712796754708
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Strong recent 3-month spike but carries high volatility (30%), a relatively deep drawdown (-10.8%), and sharply contracting volume (-17.6%), suggesting weak underlying participation.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2018-01-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Lowest volatility in the group with consistent historical returns, but short-term momentum has pushed it into overbought territory (RSI > 70) alongside slightly declining volume.",
+      "features": {
+        "ret_1m": 0.06482477193253144,
+        "ret_3m": 0.12287063428938483,
+        "ret_6m": 0.17083223555309512,
+        "ret_12m": 0.35087434860120026,
+        "vol_3m_ann": 0.16259533590150127,
+        "drawdown_6m": -0.07757107759812376,
+        "rsi_14": 70.14044019477234,
+        "dist_sma_50": 0.043787984706471494,
+        "dist_sma_200": 0.128137720652709,
+        "volume_trend_1m_vs_6m": -0.06016766837360066
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Lowest volatility in the group with consistent historical returns, but short-term momentum has pushed it into overbought territory (RSI > 70) alongside slightly declining volume.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2018-01-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Strong multi-timeframe momentum with a low historical drawdown (-6.3%) and relatively low volume contraction. Solid trend metrics without being severely overextended.",
+      "features": {
+        "ret_1m": 0.054654385740105615,
+        "ret_3m": 0.08654975628338257,
+        "ret_6m": 0.22834924514861132,
+        "ret_12m": 0.5802668937169237,
+        "vol_3m_ann": 0.19348884914585265,
+        "drawdown_6m": -0.06315918867431658,
+        "rsi_14": 68.99949369851717,
+        "dist_sma_50": 0.03628887968257022,
+        "dist_sma_200": 0.1312669433414293,
+        "volume_trend_1m_vs_6m": -0.014702701002007879
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Strong multi-timeframe momentum with a low historical drawdown (-6.3%) and relatively low volume contraction. Solid trend metrics without being severely overextended.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

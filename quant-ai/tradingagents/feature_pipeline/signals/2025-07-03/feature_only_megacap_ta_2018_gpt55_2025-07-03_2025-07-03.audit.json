@@ -1,0 +1,123 @@
+{
+  "period_id": "Period_031",
+  "signal_date": "2025-07-03",
+  "asset_mapping": {
+    "Asset_001": "NVDA",
+    "Asset_002": "MSFT",
+    "Asset_003": "AAPL",
+    "Asset_004": "AMZN",
+    "Asset_005": "GOOGL",
+    "Asset_006": "META"
+  },
+  "feature_table": {
+    "Asset_001": {
+      "ret_1m": 0.12838884780228454,
+      "ret_3m": 0.4431359350249766,
+      "ret_6m": 0.15910776608134936,
+      "ret_12m": 0.28230358899358765,
+      "vol_3m_ann": 0.5810501975068806,
+      "drawdown_6m": -0.36881026403302364,
+      "rsi_14": 70.97716161007301,
+      "dist_sma_50": 0.18841966730831583,
+      "dist_sma_200": 0.2256125953676067,
+      "volume_trend_1m_vs_6m": -0.28516951657928014
+    },
+    "Asset_002": {
+      "ret_1m": 0.07747804777596357,
+      "ret_3m": 0.3077818967332695,
+      "ret_6m": 0.17872530330364178,
+      "ret_12m": 0.10057266194416847,
+      "vol_3m_ann": 0.32134639015167005,
+      "drawdown_6m": -0.2055659256534833,
+      "rsi_14": 69.45251729383736,
+      "dist_sma_50": 0.09464183450050578,
+      "dist_sma_200": 0.17889901950509723,
+      "volume_trend_1m_vs_6m": -0.13029821191540403
+    },
+    "Asset_003": {
+      "ret_1m": 0.050573115696545434,
+      "ret_3m": -0.04493256364387821,
+      "ret_6m": -0.15120874738211754,
+      "ret_12m": -0.010155853719270302,
+      "vol_3m_ann": 0.49677747540954115,
+      "drawdown_6m": -0.31071969306401204,
+      "rsi_14": 74.80119923246583,
+      "dist_sma_50": 0.048617944529376844,
+      "dist_sma_200": -0.040949387023056394,
+      "volume_trend_1m_vs_6m": -0.013771817321131752
+    },
+    "Asset_004": {
+      "ret_1m": 0.08604344159524557,
+      "ret_3m": 0.13978883691218025,
+      "ret_6m": 0.009534571085650034,
+      "ret_12m": 0.1329107866099326,
+      "vol_3m_ann": 0.4492833129189678,
+      "drawdown_6m": -0.3087663843187606,
+      "rsi_14": 63.321968202418454,
+      "dist_sma_50": 0.09053900933588777,
+      "dist_sma_200": 0.08630724964596848,
+      "volume_trend_1m_vs_6m": -0.035273789715767334
+    },
+    "Asset_005": {
+      "ret_1m": 0.08164246306990086,
+      "ret_3m": 0.14459601983539927,
+      "ret_6m": -0.05901311618116567,
+      "ret_12m": -0.014155704434890892,
+      "vol_3m_ann": 0.37990017233962153,
+      "drawdown_6m": -0.29805878729523905,
+      "rsi_14": 55.562001128221986,
+      "dist_sma_50": 0.07029138382457178,
+      "dist_sma_200": 0.04166911055247802,
+      "volume_trend_1m_vs_6m": 0.10957105072486861
+    },
+    "Asset_006": {
+      "ret_1m": 0.07904814780367886,
+      "ret_3m": 0.2322764296519917,
+      "ret_6m": 0.2181237572118635,
+      "ret_12m": 0.4295633471363445,
+      "vol_3m_ann": 0.5060281297760227,
+      "drawdown_6m": -0.3415081926193265,
+      "rsi_14": 59.16985414040197,
+      "dist_sma_50": 0.10635335346833741,
+      "dist_sma_200": 0.17210348684760346,
+      "volume_trend_1m_vs_6m": -0.2297287241199072
+    }
+  },
+  "prompt_sha256": "98f87abddb0b600456dda0bac46782f1f28420776e3327a5f979eea07436824b",
+  "prompt": "You are ranking anonymous assets using only the numeric features below. You do not know the real date, ticker, company, sector, or future returns. Do not infer external events. Use only this table.\n\nReturn strict JSON only, with this shape:\n{\"decisions\":[{\"asset_id\":\"Asset_001\",\"rating\":\"Buy|Overweight|Hold|Underweight|Sell\",\"rationale\":\"short feature-based reason\"}]}\n\nFeature payload:\n{\n  \"period_id\": \"Period_031\",\n  \"feature_definitions\": {\n    \"ret_1m/3m/6m/12m\": \"Trailing close-to-close returns ending at the as-of close.\",\n    \"vol_3m_ann\": \"Annualized daily volatility over the last 63 trading days.\",\n    \"drawdown_6m\": \"Worst drawdown over the last 126 trading days.\",\n    \"rsi_14\": \"14-day RSI.\",\n    \"dist_sma_50/200\": \"Close divided by SMA minus 1.\",\n    \"volume_trend_1m_vs_6m\": \"21-day average volume divided by 126-day average volume minus 1.\"\n  },\n  \"assets\": {\n    \"Asset_001\": {\n      \"ret_1m\": 0.12838884780228454,\n      \"ret_3m\": 0.4431359350249766,\n      \"ret_6m\": 0.15910776608134936,\n      \"ret_12m\": 0.28230358899358765,\n      \"vol_3m_ann\": 0.5810501975068806,\n      \"drawdown_6m\": -0.36881026403302364,\n      \"rsi_14\": 70.97716161007301,\n      \"dist_sma_50\": 0.18841966730831583,\n      \"dist_sma_200\": 0.2256125953676067,\n      \"volume_trend_1m_vs_6m\": -0.28516951657928014\n    },\n    \"Asset_002\": {\n      \"ret_1m\": 0.07747804777596357,\n      \"ret_3m\": 0.3077818967332695,\n      \"ret_6m\": 0.17872530330364178,\n      \"ret_12m\": 0.10057266194416847,\n      \"vol_3m_ann\": 0.32134639015167005,\n      \"drawdown_6m\": -0.2055659256534833,\n      \"rsi_14\": 69.45251729383736,\n      \"dist_sma_50\": 0.09464183450050578,\n      \"dist_sma_200\": 0.17889901950509723,\n      \"volume_trend_1m_vs_6m\": -0.13029821191540403\n    },\n    \"Asset_003\": {\n      \"ret_1m\": 0.050573115696545434,\n      \"ret_3m\": -0.04493256364387821,\n      \"ret_6m\": -0.15120874738211754,\n      \"ret_12m\": -0.010155853719270302,\n      \"vol_3m_ann\": 0.49677747540954115,\n      \"drawdown_6m\": -0.31071969306401204,\n      \"rsi_14\": 74.80119923246583,\n      \"dist_sma_50\": 0.048617944529376844,\n      \"dist_sma_200\": -0.040949387023056394,\n      \"volume_trend_1m_vs_6m\": -0.013771817321131752\n    },\n    \"Asset_004\": {\n      \"ret_1m\": 0.08604344159524557,\n      \"ret_3m\": 0.13978883691218025,\n      \"ret_6m\": 0.009534571085650034,\n      \"ret_12m\": 0.1329107866099326,\n      \"vol_3m_ann\": 0.4492833129189678,\n      \"drawdown_6m\": -0.3087663843187606,\n      \"rsi_14\": 63.321968202418454,\n      \"dist_sma_50\": 0.09053900933588777,\n      \"dist_sma_200\": 0.08630724964596848,\n      \"volume_trend_1m_vs_6m\": -0.035273789715767334\n    },\n    \"Asset_005\": {\n      \"ret_1m\": 0.08164246306990086,\n      \"ret_3m\": 0.14459601983539927,\n      \"ret_6m\": -0.05901311618116567,\n      \"ret_12m\": -0.014155704434890892,\n      \"vol_3m_ann\": 0.37990017233962153,\n      \"drawdown_6m\": -0.29805878729523905,\n      \"rsi_14\": 55.562001128221986,\n      \"dist_sma_50\": 0.07029138382457178,\n      \"dist_sma_200\": 0.04166911055247802,\n      \"volume_trend_1m_vs_6m\": 0.10957105072486861\n    },\n    \"Asset_006\": {\n      \"ret_1m\": 0.07904814780367886,\n      \"ret_3m\": 0.2322764296519917,\n      \"ret_6m\": 0.2181237572118635,\n      \"ret_12m\": 0.4295633471363445,\n      \"vol_3m_ann\": 0.5060281297760227,\n      \"drawdown_6m\": -0.3415081926193265,\n      \"rsi_14\": 59.16985414040197,\n      \"dist_sma_50\": 0.10635335346833741,\n      \"dist_sma_200\": 0.17210348684760346,\n      \"volume_trend_1m_vs_6m\": -0.2297287241199072\n    }\n  }\n}",
+  "raw_response": "{\"decisions\":[{\"asset_id\":\"Asset_001\",\"rating\":\"Overweight\",\"rationale\":\"Very strong 1m/3m momentum and above both SMAs, but high volatility, deep 6m drawdown, RSI above 70 and weak volume trend temper conviction.\"},{\"asset_id\":\"Asset_002\",\"rating\":\"Buy\",\"rationale\":\"Strong positive 1m/3m/6m momentum, above 50/200 SMAs, comparatively lower volatility and drawdown; RSI is elevated but not extreme.\"},{\"asset_id\":\"Asset_003\",\"rating\":\"Sell\",\"rationale\":\"Negative 3m/6m/12m returns, below 200-day SMA, high volatility and large drawdown; short-term bounce has RSI overbought.\"},{\"asset_id\":\"Asset_004\",\"rating\":\"Hold\",\"rationale\":\"Positive short- and medium-term returns and above both SMAs, but 6m return is flat with high volatility and sizable drawdown.\"},{\"asset_id\":\"Asset_005\",\"rating\":\"Hold\",\"rationale\":\"Improving 1m/3m momentum and positive volume trend, but 6m/12m returns remain negative and drawdown is still large.\"},{\"asset_id\":\"Asset_006\",\"rating\":\"Overweight\",\"rationale\":\"Best 12m return with strong 3m/6m momentum and above both SMAs, though high volatility, deep drawdown and declining volume trend add risk.\"}]}",
+  "parsed_response": {
+    "decisions": [
+      {
+        "asset_id": "Asset_001",
+        "rating": "Overweight",
+        "rationale": "Very strong 1m/3m momentum and above both SMAs, but high volatility, deep 6m drawdown, RSI above 70 and weak volume trend temper conviction."
+      },
+      {
+        "asset_id": "Asset_002",
+        "rating": "Buy",
+        "rationale": "Strong positive 1m/3m/6m momentum, above 50/200 SMAs, comparatively lower volatility and drawdown; RSI is elevated but not extreme."
+      },
+      {
+        "asset_id": "Asset_003",
+        "rating": "Sell",
+        "rationale": "Negative 3m/6m/12m returns, below 200-day SMA, high volatility and large drawdown; short-term bounce has RSI overbought."
+      },
+      {
+        "asset_id": "Asset_004",
+        "rating": "Hold",
+        "rationale": "Positive short- and medium-term returns and above both SMAs, but 6m return is flat with high volatility and sizable drawdown."
+      },
+      {
+        "asset_id": "Asset_005",
+        "rating": "Hold",
+        "rationale": "Improving 1m/3m momentum and positive volume trend, but 6m/12m returns remain negative and drawdown is still large."
+      },
+      {
+        "asset_id": "Asset_006",
+        "rating": "Overweight",
+        "rationale": "Best 12m return with strong 3m/6m momentum and above both SMAs, though high volatility, deep drawdown and declining volume trend add risk."
+      }
+    ]
+  }
+}

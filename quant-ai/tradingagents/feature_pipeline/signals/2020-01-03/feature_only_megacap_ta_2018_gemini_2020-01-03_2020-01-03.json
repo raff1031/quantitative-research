@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2020-01-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2020-01-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "932edf01fab84ae1c44f73fba330801c9e933f42d391e2fd9e63a5f36ca1621b"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2020-01-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Strong long-term momentum is offset by the highest volatility in the group, a steep drawdown, and significantly declining volume on the recent advance.",
+      "features": {
+        "ret_1m": 0.13681027387907396,
+        "ret_3m": 0.30298485538915987,
+        "ret_6m": 0.47586628615577187,
+        "ret_12m": 0.8516439232944499,
+        "vol_3m_ann": 0.28688771621147824,
+        "drawdown_6m": -0.16730125352882974,
+        "rsi_14": 67.10385963800772,
+        "dist_sma_50": 0.09164659345183157,
+        "dist_sma_200": 0.304325716172801,
+        "volume_trend_1m_vs_6m": -0.17025011755225383
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Strong long-term momentum is offset by the highest volatility in the group, a steep drawdown, and significantly declining volume on the recent advance.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2020-01-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Excellent risk-adjusted returns featuring low volatility, a very shallow drawdown, and steady momentum without severe overextension.",
+      "features": {
+        "ret_1m": 0.06235379087854653,
+        "ret_3m": 0.16788754429676578,
+        "ret_6m": 0.16510799304083634,
+        "ret_12m": 0.6526213967950403,
+        "vol_3m_ann": 0.13627763638032847,
+        "drawdown_6m": -0.06459597014766116,
+        "rsi_14": 68.55163006047465,
+        "dist_sma_50": 0.05718492069505743,
+        "dist_sma_200": 0.16601333843937138,
+        "volume_trend_1m_vs_6m": -0.08670176442922728
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Excellent risk-adjusted returns featuring low volatility, a very shallow drawdown, and steady momentum without severe overextension.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2020-01-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Despite explosive returns confirmed by volume, an extreme RSI (87.6) and massive deviation from its 200-day SMA signal severe overextension and high pullback risk.",
+      "features": {
+        "ret_1m": 0.14638657720527837,
+        "ret_3m": 0.35097801700801634,
+        "ret_6m": 0.466270467398167,
+        "ret_12m": 1.1232078542284554,
+        "vol_3m_ann": 0.17531089506110806,
+        "drawdown_6m": -0.0924708953777229,
+        "rsi_14": 87.60509959312147,
+        "dist_sma_50": 0.1127437658920385,
+        "dist_sma_200": 0.3563324356262487,
+        "volume_trend_1m_vs_6m": 0.10258448541945042
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Despite explosive returns confirmed by volume, an extreme RSI (87.6) and massive deviation from its 200-day SMA signal severe overextension and high pullback risk.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2020-01-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Fundamentally weak with negative 6-month returns and a steep drawdown, yet an overbought RSI suggests a poorly supported, short-lived bounce to fade.",
+      "features": {
+        "ret_1m": 0.059328977439758734,
+        "ret_3m": 0.0873046737949621,
+        "ret_6m": -0.034968198912201376,
+        "ret_12m": 0.2497466750947266,
+        "vol_3m_ann": 0.16643775228072885,
+        "drawdown_6m": -0.15610173381775128,
+        "rsi_14": 73.98928167283557,
+        "dist_sma_50": 0.05145407579877337,
+        "dist_sma_200": 0.025734668409455708,
+        "volume_trend_1m_vs_6m": 0.02362099037099963
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Fundamentally weak with negative 6-month returns and a steep drawdown, yet an overbought RSI suggests a poorly supported, short-lived bounce to fade.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2020-01-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Offers the best entry profile with steady, consistent multi-period momentum, low volatility, a minimal drawdown, and a neutral RSI with room to run.",
+      "features": {
+        "ret_1m": 0.0515776908128589,
+        "ret_3m": 0.1446825964206364,
+        "ret_6m": 0.2020447101735796,
+        "ret_12m": 0.32770328938243365,
+        "vol_3m_ann": 0.1418118995191604,
+        "drawdown_6m": -0.07359355416094548,
+        "rsi_14": 55.50487159654471,
+        "dist_sma_50": 0.03460910393498007,
+        "dist_sma_200": 0.12338256628841648,
+        "volume_trend_1m_vs_6m": -0.0326543419982791
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Offers the best entry profile with steady, consistent multi-period momentum, low volatility, a minimal drawdown, and a neutral RSI with room to run.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2020-01-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Choppy medium-term performance coupled with elevated volatility, a significant recent drawdown, and slightly overbought technicals.",
+      "features": {
+        "ret_1m": 0.049542120908420806,
+        "ret_3m": 0.1632846552188123,
+        "ret_6m": 0.06247442457746222,
+        "ret_12m": 0.5839527722501014,
+        "vol_3m_ann": 0.2010730481799229,
+        "drawdown_6m": -0.14775206715420275,
+        "rsi_14": 70.43888336015078,
+        "dist_sma_50": 0.05465153880891682,
+        "dist_sma_200": 0.10839553255984336,
+        "volume_trend_1m_vs_6m": -0.0520662357743642
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Choppy medium-term performance coupled with elevated volatility, a significant recent drawdown, and slightly overbought technicals.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

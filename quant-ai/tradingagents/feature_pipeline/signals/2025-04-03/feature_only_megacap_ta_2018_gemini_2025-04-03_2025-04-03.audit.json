@@ -1,0 +1,123 @@
+{
+  "period_id": "Period_030",
+  "signal_date": "2025-04-03",
+  "asset_mapping": {
+    "Asset_001": "NVDA",
+    "Asset_002": "MSFT",
+    "Asset_003": "AAPL",
+    "Asset_004": "AMZN",
+    "Asset_005": "GOOGL",
+    "Asset_006": "META"
+  },
+  "feature_table": {
+    "Asset_001": {
+      "ret_1m": -0.13205994986632474,
+      "ret_3m": -0.24186938157276916,
+      "ret_6m": -0.12977450307071192,
+      "ret_12m": 0.13841444473649167,
+      "vol_3m_ann": 0.6642280296600108,
+      "drawdown_6m": -0.31868184512998987,
+      "rsi_14": 23.556040694529614,
+      "dist_sma_50": -0.16799974577438415,
+      "dist_sma_200": -0.19988583426492146,
+      "volume_trend_1m_vs_6m": 0.11477193751431503
+    },
+    "Asset_002": {
+      "ret_1m": -0.06959748671610078,
+      "ret_3m": -0.1130293554174252,
+      "ret_6m": -0.1095427368709051,
+      "ret_12m": -0.10791921087503265,
+      "vol_3m_ann": 0.2552753748770425,
+      "drawdown_6m": -0.17735752574423014,
+      "rsi_14": 36.15348109376748,
+      "dist_sma_50": -0.07004951663737524,
+      "dist_sma_200": -0.11152725418855025,
+      "volume_trend_1m_vs_6m": 0.049089849806535524
+    },
+    "Asset_003": {
+      "ret_1m": -0.13807586625063306,
+      "ret_3m": -0.1877110792979031,
+      "ret_6m": -0.09978706086140343,
+      "ret_12m": 0.20912954168894915,
+      "vol_3m_ann": 0.3333541087648374,
+      "drawdown_6m": -0.214680636141669,
+      "rsi_14": 40.160479118360385,
+      "dist_sma_50": -0.11527625837853472,
+      "dist_sma_200": -0.1118208665790632,
+      "volume_trend_1m_vs_6m": 0.1258087424806842
+    },
+    "Asset_004": {
+      "ret_1m": -0.14374158600743558,
+      "ret_3m": -0.18679062783876665,
+      "ret_6m": -0.036298822683858756,
+      "ret_12m": -0.012618289603688715,
+      "vol_3m_ann": 0.3310404165658409,
+      "drawdown_6m": -0.2629513118171336,
+      "rsi_14": 33.28771703522078,
+      "dist_sma_50": -0.16471901708665648,
+      "dist_sma_200": -0.10919933078339528,
+      "volume_trend_1m_vs_6m": 0.22809503916600748
+    },
+    "Asset_005": {
+      "ret_1m": -0.12788368561029118,
+      "ret_3m": -0.20288659516649044,
+      "ret_6m": -0.09535600693464141,
+      "ret_12m": -0.020182827082918964,
+      "vol_3m_ann": 0.32907075664016106,
+      "drawdown_6m": -0.2688557350068287,
+      "rsi_14": 32.504147140132886,
+      "dist_sma_50": -0.14543214794093717,
+      "dist_sma_200": -0.13452921079807711,
+      "volume_trend_1m_vs_6m": 0.16975427865696968
+    },
+    "Asset_006": {
+      "ret_1m": -0.18946347785565887,
+      "ret_3m": -0.09123160845074552,
+      "ret_6m": -0.07623612980140881,
+      "ret_12m": 0.07276151453937363,
+      "vol_3m_ann": 0.37321707388248715,
+      "drawdown_6m": -0.2777051432328548,
+      "rsi_14": 29.258594673952942,
+      "dist_sma_50": -0.18032118806781983,
+      "dist_sma_200": -0.07767739566171716,
+      "volume_trend_1m_vs_6m": 0.26660012887280926
+    }
+  },
+  "prompt_sha256": "5e3124a045b412aea5cbd9cad49006bf190d17ebcd2a7bc332664edec31d8b64",
+  "prompt": "You are ranking anonymous assets using only the numeric features below. You do not know the real date, ticker, company, sector, or future returns. Do not infer external events. Use only this table.\n\nReturn strict JSON only, with this shape:\n{\"decisions\":[{\"asset_id\":\"Asset_001\",\"rating\":\"Buy|Overweight|Hold|Underweight|Sell\",\"rationale\":\"short feature-based reason\"}]}\n\nFeature payload:\n{\n  \"period_id\": \"Period_030\",\n  \"feature_definitions\": {\n    \"ret_1m/3m/6m/12m\": \"Trailing close-to-close returns ending at the as-of close.\",\n    \"vol_3m_ann\": \"Annualized daily volatility over the last 63 trading days.\",\n    \"drawdown_6m\": \"Worst drawdown over the last 126 trading days.\",\n    \"rsi_14\": \"14-day RSI.\",\n    \"dist_sma_50/200\": \"Close divided by SMA minus 1.\",\n    \"volume_trend_1m_vs_6m\": \"21-day average volume divided by 126-day average volume minus 1.\"\n  },\n  \"assets\": {\n    \"Asset_001\": {\n      \"ret_1m\": -0.13205994986632474,\n      \"ret_3m\": -0.24186938157276916,\n      \"ret_6m\": -0.12977450307071192,\n      \"ret_12m\": 0.13841444473649167,\n      \"vol_3m_ann\": 0.6642280296600108,\n      \"drawdown_6m\": -0.31868184512998987,\n      \"rsi_14\": 23.556040694529614,\n      \"dist_sma_50\": -0.16799974577438415,\n      \"dist_sma_200\": -0.19988583426492146,\n      \"volume_trend_1m_vs_6m\": 0.11477193751431503\n    },\n    \"Asset_002\": {\n      \"ret_1m\": -0.06959748671610078,\n      \"ret_3m\": -0.1130293554174252,\n      \"ret_6m\": -0.1095427368709051,\n      \"ret_12m\": -0.10791921087503265,\n      \"vol_3m_ann\": 0.2552753748770425,\n      \"drawdown_6m\": -0.17735752574423014,\n      \"rsi_14\": 36.15348109376748,\n      \"dist_sma_50\": -0.07004951663737524,\n      \"dist_sma_200\": -0.11152725418855025,\n      \"volume_trend_1m_vs_6m\": 0.049089849806535524\n    },\n    \"Asset_003\": {\n      \"ret_1m\": -0.13807586625063306,\n      \"ret_3m\": -0.1877110792979031,\n      \"ret_6m\": -0.09978706086140343,\n      \"ret_12m\": 0.20912954168894915,\n      \"vol_3m_ann\": 0.3333541087648374,\n      \"drawdown_6m\": -0.214680636141669,\n      \"rsi_14\": 40.160479118360385,\n      \"dist_sma_50\": -0.11527625837853472,\n      \"dist_sma_200\": -0.1118208665790632,\n      \"volume_trend_1m_vs_6m\": 0.1258087424806842\n    },\n    \"Asset_004\": {\n      \"ret_1m\": -0.14374158600743558,\n      \"ret_3m\": -0.18679062783876665,\n      \"ret_6m\": -0.036298822683858756,\n      \"ret_12m\": -0.012618289603688715,\n      \"vol_3m_ann\": 0.3310404165658409,\n      \"drawdown_6m\": -0.2629513118171336,\n      \"rsi_14\": 33.28771703522078,\n      \"dist_sma_50\": -0.16471901708665648,\n      \"dist_sma_200\": -0.10919933078339528,\n      \"volume_trend_1m_vs_6m\": 0.22809503916600748\n    },\n    \"Asset_005\": {\n      \"ret_1m\": -0.12788368561029118,\n      \"ret_3m\": -0.20288659516649044,\n      \"ret_6m\": -0.09535600693464141,\n      \"ret_12m\": -0.020182827082918964,\n      \"vol_3m_ann\": 0.32907075664016106,\n      \"drawdown_6m\": -0.2688557350068287,\n      \"rsi_14\": 32.504147140132886,\n      \"dist_sma_50\": -0.14543214794093717,\n      \"dist_sma_200\": -0.13452921079807711,\n      \"volume_trend_1m_vs_6m\": 0.16975427865696968\n    },\n    \"Asset_006\": {\n      \"ret_1m\": -0.18946347785565887,\n      \"ret_3m\": -0.09123160845074552,\n      \"ret_6m\": -0.07623612980140881,\n      \"ret_12m\": 0.07276151453937363,\n      \"vol_3m_ann\": 0.37321707388248715,\n      \"drawdown_6m\": -0.2777051432328548,\n      \"rsi_14\": 29.258594673952942,\n      \"dist_sma_50\": -0.18032118806781983,\n      \"dist_sma_200\": -0.07767739566171716,\n      \"volume_trend_1m_vs_6m\": 0.26660012887280926\n    }\n  }\n}",
+  "raw_response": "```json\n{\n  \"decisions\": [\n    {\n      \"asset_id\": \"Asset_003\",\n      \"rating\": \"Buy\",\n      \"rationale\": \"Best long-term momentum (+20.9% 12m return) with the highest relative strength (RSI > 40) and manageable volatility.\"\n    },\n    {\n      \"asset_id\": \"Asset_002\",\n      \"rating\": \"Overweight\",\n      \"rationale\": \"Lowest volatility and smallest 6m drawdown; offers a defensive profile with better capital preservation.\"\n    },\n    {\n      \"asset_id\": \"Asset_006\",\n      \"rating\": \"Hold\",\n      \"rationale\": \"Retains a positive 12m trend, though a severe 1m drop on high volume indicates elevated short-term risk but potential capitulation.\"\n    },\n    {\n      \"asset_id\": \"Asset_004\",\n      \"rating\": \"Hold\",\n      \"rationale\": \"Moderate drawdown and flat 12m returns; volume surge suggests consolidation, but lacks strong upside momentum.\"\n    },\n    {\n      \"asset_id\": \"Asset_005\",\n      \"rating\": \"Underweight\",\n      \"rationale\": \"Consistently negative returns across all measured timeframes with poor relative strength and no structural support.\"\n    },\n    {\n      \"asset_id\": \"Asset_001\",\n      \"rating\": \"Sell\",\n      \"rationale\": \"Extreme volatility (66% annualized) and severe recent drawdown; deeply broken trend overrides the oversold RSI signal.\"\n    }\n  ]\n}\n```",
+  "parsed_response": {
+    "decisions": [
+      {
+        "asset_id": "Asset_003",
+        "rating": "Buy",
+        "rationale": "Best long-term momentum (+20.9% 12m return) with the highest relative strength (RSI > 40) and manageable volatility."
+      },
+      {
+        "asset_id": "Asset_002",
+        "rating": "Overweight",
+        "rationale": "Lowest volatility and smallest 6m drawdown; offers a defensive profile with better capital preservation."
+      },
+      {
+        "asset_id": "Asset_006",
+        "rating": "Hold",
+        "rationale": "Retains a positive 12m trend, though a severe 1m drop on high volume indicates elevated short-term risk but potential capitulation."
+      },
+      {
+        "asset_id": "Asset_004",
+        "rating": "Hold",
+        "rationale": "Moderate drawdown and flat 12m returns; volume surge suggests consolidation, but lacks strong upside momentum."
+      },
+      {
+        "asset_id": "Asset_005",
+        "rating": "Underweight",
+        "rationale": "Consistently negative returns across all measured timeframes with poor relative strength and no structural support."
+      },
+      {
+        "asset_id": "Asset_001",
+        "rating": "Sell",
+        "rationale": "Extreme volatility (66% annualized) and severe recent drawdown; deeply broken trend overrides the oversold RSI signal."
+      }
+    ]
+  }
+}

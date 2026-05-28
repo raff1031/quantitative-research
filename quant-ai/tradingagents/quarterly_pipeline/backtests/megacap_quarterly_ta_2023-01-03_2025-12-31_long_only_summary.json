@@ -1,0 +1,21 @@
+{
+  "strategy_total_return": 1.8751288908837824,
+  "benchmark_total_return": 0.8485469223894344,
+  "alpha_total": 1.026581968494348,
+  "strategy_ann_return": 0.4259649773561054,
+  "benchmark_ann_return": 0.2292919592156324,
+  "strategy_ann_vol": 0.2445857387767754,
+  "benchmark_ann_vol": 0.1534553559152028,
+  "strategy_sharpe_0rf": 1.7415773277969748,
+  "benchmark_sharpe_0rf": 1.4941932645370541,
+  "strategy_max_drawdown": -0.2533062522216022,
+  "benchmark_max_drawdown": -0.18755246925491065,
+  "daily_observations": 750.0,
+  "universe_equal_weight_total_return": 3.118372775556524,
+  "universe_equal_weight_ann_return": 0.6089695306281149,
+  "universe_equal_weight_ann_vol": 0.252442964832094,
+  "universe_equal_weight_sharpe_0rf": 2.412305413356064,
+  "universe_equal_weight_max_drawdown": -0.25115819874770984,
+  "alpha_vs_universe_equal_weight": -1.2432438846727414,
+  "rebalances": 12.0
+}

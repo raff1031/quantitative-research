@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2022-10-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2022-10-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "61067521f4a612ceaaae018d13a82a20de79c09a2382188c46ec43d84ac6be34"
+  },
+  "decisions": [
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2022-10-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Strongest relative momentum with positive 3m and 12m returns, manageable volatility, and the best distance to the 200-day SMA among peers.",
+      "features": {
+        "ret_1m": -0.09818925942839052,
+        "ret_3m": 0.007684976281669753,
+        "ret_6m": -0.18044032118226183,
+        "ret_12m": 0.00419366297982382,
+        "vol_3m_ann": 0.307744446799188,
+        "drawdown_6m": -0.27005653248021133,
+        "rsi_14": 34.96967113675858,
+        "dist_sma_50": -0.10668147046197951,
+        "dist_sma_200": -0.10602481387875695,
+        "volume_trend_1m_vs_6m": 0.16794737842654484
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Strongest relative momentum with positive 3m and 12m returns, manageable volatility, and the best distance to the 200-day SMA among peers.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2022-10-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Positive 3m return suggests recent stabilization despite long-term downtrend; falling volume may indicate selling exhaustion.",
+      "features": {
+        "ret_1m": -0.09341263080827356,
+        "ret_3m": 0.02096913879663398,
+        "ret_6m": -0.29151382377647017,
+        "ret_12m": -0.29411620634905,
+        "vol_3m_ann": 0.43170436603783285,
+        "drawdown_6m": -0.3922653596254644,
+        "rsi_14": 33.096419844715015,
+        "dist_sma_50": -0.10567514356310459,
+        "dist_sma_200": -0.15437066938122812,
+        "volume_trend_1m_vs_6m": -0.2145832847569933
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Positive 3m return suggests recent stabilization despite long-term downtrend; falling volume may indicate selling exhaustion.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2022-10-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Lowest volatility and smallest 6m drawdown offer relative capital preservation, though trailing returns remain negative across all horizons.",
+      "features": {
+        "ret_1m": -0.07549911068329462,
+        "ret_3m": -0.08217227152220585,
+        "ret_6m": -0.21849628299311963,
+        "ret_12m": -0.16030368860984767,
+        "vol_3m_ann": 0.29853650435017387,
+        "drawdown_6m": -0.2572692179181877,
+        "rsi_14": 36.20305479644641,
+        "dist_sma_50": -0.0896355023696711,
+        "dist_sma_200": -0.14150056145939138,
+        "volume_trend_1m_vs_6m": -0.026194186489025162
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Lowest volatility and smallest 6m drawdown offer relative capital preservation, though trailing returns remain negative across all horizons.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2022-10-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Persistent downtrend across all measured timeframes with moderate volatility; lacks any bullish momentum or stabilization signals.",
+      "features": {
+        "ret_1m": -0.10114816885793587,
+        "ret_3m": -0.1291066860202137,
+        "ret_6m": -0.2961852495819526,
+        "ret_12m": -0.2775903814828198,
+        "vol_3m_ann": 0.36184466265231263,
+        "drawdown_6m": -0.3309854843024418,
+        "rsi_14": 36.064749564609535,
+        "dist_sma_50": -0.10305260472916156,
+        "dist_sma_200": -0.19520963657970458,
+        "volume_trend_1m_vs_6m": -0.14539831946927584
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Persistent downtrend across all measured timeframes with moderate volatility; lacks any bullish momentum or stabilization signals.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2022-10-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Severe 12m collapse (-59.6%) paired with a sharp 1m decline (-16.2%); deeply disconnected from its moving averages.",
+      "features": {
+        "ret_1m": -0.16176826314398873,
+        "ret_3m": -0.17587239045435565,
+        "ret_6m": -0.3835444983325731,
+        "ret_12m": -0.595900956176049,
+        "vol_3m_ann": 0.4915976863468293,
+        "drawdown_6m": -0.42537081341128613,
+        "rsi_14": 31.694430226606485,
+        "dist_sma_50": -0.1314878927809885,
+        "dist_sma_200": -0.3348528423603303,
+        "volume_trend_1m_vs_6m": -0.006497943737396872
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Severe 12m collapse (-59.6%) paired with a sharp 1m decline (-16.2%); deeply disconnected from its moving averages.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2022-10-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Displays the worst 6m returns (-53.1%), highest volatility (54.8%), and deepest 6m drawdown (-55.6%), showing intense and unarrested selling.",
+      "features": {
+        "ret_1m": -0.10197909191783983,
+        "ret_3m": -0.1636115183705944,
+        "ret_6m": -0.5313580814418086,
+        "ret_12m": -0.3962959928830515,
+        "vol_3m_ann": 0.5479984310729943,
+        "drawdown_6m": -0.5560974088607769,
+        "rsi_14": 41.047125307098156,
+        "dist_sma_50": -0.2030993864037256,
+        "dist_sma_200": -0.38512109060301636,
+        "volume_trend_1m_vs_6m": 0.05186741904272818
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Displays the worst 6m returns (-53.1%), highest volatility (54.8%), and deepest 6m drawdown (-55.6%), showing intense and unarrested selling.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

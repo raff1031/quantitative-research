@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 2020-10-02",
+  "created_on": "2026-05-10",
+  "trade_date": "2020-10-02",
+  "provider": "openai",
+  "quick_model": "gpt-5.4-mini",
+  "deep_model": "gpt-5.4-mini",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "c29196b3696bcca61b946f98cd678cddc5aadadf834aded66881a92f5c537d53"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2020-10-02",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Strong 3m/6m/12m momentum, price well above 50/200 SMA, positive RSI, and elevated volume trend despite weak 1m pullback.",
+      "features": {
+        "ret_1m": -0.0895166073329321,
+        "ret_3m": 0.32796289603287265,
+        "ret_6m": 1.143761267989039,
+        "ret_12m": 1.8877814558260897,
+        "vol_3m_ann": 0.4713279337127437,
+        "drawdown_6m": -0.16962308396804848,
+        "rsi_14": 52.419755733821994,
+        "dist_sma_50": 0.07275646314182427,
+        "dist_sma_200": 0.5150220394265488,
+        "volume_trend_1m_vs_6m": 0.4081479803931074
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Strong 3m/6m/12m momentum, price well above 50/200 SMA, positive RSI, and elevated volume trend despite weak 1m pullback.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2020-10-02",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Moderate 6m/12m gains but recent weakness, near-flat relative to SMA50, and only average momentum with decent but not standout trend.",
+      "features": {
+        "ret_1m": -0.10990708155224405,
+        "ret_3m": -0.019039241617379132,
+        "ret_6m": 0.3473582787833702,
+        "ret_12m": 0.5302128889936215,
+        "vol_3m_ann": 0.3429331801130391,
+        "drawdown_6m": -0.13494494532819123,
+        "rsi_14": 50.81046669332246,
+        "dist_sma_50": -0.019647178270756238,
+        "dist_sma_200": 0.12157196690332617,
+        "volume_trend_1m_vs_6m": 0.006838034003716853
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Moderate 6m/12m gains but recent weakness, near-flat relative to SMA50, and only average momentum with decent but not standout trend.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2020-10-02",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Solid medium-term upside and positive trend above SMA200, though recent 1m weakness and elevated volatility/drawdown temper conviction.",
+      "features": {
+        "ret_1m": -0.1398784279491443,
+        "ret_3m": 0.2114350818103765,
+        "ret_6m": 0.8811193283830894,
+        "ret_12m": 1.0675907207777326,
+        "vol_3m_ann": 0.4491354592672374,
+        "drawdown_6m": -0.203756091698704,
+        "rsi_14": 46.530211976377515,
+        "dist_sma_50": -0.006341866365419557,
+        "dist_sma_200": 0.31037830158239,
+        "volume_trend_1m_vs_6m": 0.13372489532621246
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Solid medium-term upside and positive trend above SMA200, though recent 1m weakness and elevated volatility/drawdown temper conviction.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2020-10-02",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Consistent positive returns across 6m/12m with price above both moving averages and acceptable RSI, but recent momentum is softer.",
+      "features": {
+        "ret_1m": -0.11509433880739084,
+        "ret_3m": 0.02223062101807982,
+        "ret_6m": 0.6390519493033548,
+        "ret_12m": 0.8122035093922668,
+        "vol_3m_ann": 0.3845052289666296,
+        "drawdown_6m": -0.16325869966396922,
+        "rsi_14": 51.17985556951714,
+        "dist_sma_50": -0.01896679775135246,
+        "dist_sma_200": 0.2582514944950476,
+        "volume_trend_1m_vs_6m": 0.15194836759784391
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Consistent positive returns across 6m/12m with price above both moving averages and acceptable RSI, but recent momentum is softer.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2020-10-02",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Weaker 12m performance, negative 3m/1m returns, RSI below 50, and price below SMA50 indicate deteriorating momentum.",
+      "features": {
+        "ret_1m": -0.15243469709193713,
+        "ret_3m": -0.029373353815762004,
+        "ret_6m": 0.33211327918369205,
+        "ret_12m": 0.22377948639212963,
+        "vol_3m_ann": 0.2756835115613908,
+        "drawdown_6m": -0.17934186199802815,
+        "rsi_14": 41.760809430914136,
+        "dist_sma_50": -0.045152223938698444,
+        "dist_sma_200": 0.03380726160519609,
+        "volume_trend_1m_vs_6m": 0.02671052126139628
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Weaker 12m performance, negative 3m/1m returns, RSI below 50, and price below SMA50 indicate deteriorating momentum.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2020-10-02",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Positive longer-term returns but recent 1m decline, RSI below 50, negative volume trend, and only modest distance above SMA200.",
+      "features": {
+        "ret_1m": -0.14069421293326034,
+        "ret_3m": 0.0818212516135044,
+        "ret_6m": 0.6859515425563376,
+        "ret_12m": 0.44910210750499346,
+        "vol_3m_ann": 0.3826007344347371,
+        "drawdown_6m": -0.1834754700013147,
+        "rsi_14": 45.37736648220946,
+        "dist_sma_50": -0.014217605600785999,
+        "dist_sma_200": 0.17687369021243704,
+        "volume_trend_1m_vs_6m": -0.06224325190267821
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Positive longer-term returns but recent 1m decline, RSI below 50, negative volume trend, and only modest distance above SMA200.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

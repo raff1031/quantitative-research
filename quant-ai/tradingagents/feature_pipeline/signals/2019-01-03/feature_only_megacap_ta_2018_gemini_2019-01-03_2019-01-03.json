@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2019-01-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2019-01-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "63cf70875264eadc64d9bec73939d293079e0115637e3b6c6bd6184a34464519"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2019-01-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Catastrophic downtrend with a -55% 3-month return, extreme volatility (74%), and trading deeply below moving averages, indicating a severe falling knife.",
+      "features": {
+        "ret_1m": -0.21685096592931274,
+        "ret_3m": -0.5527851973732627,
+        "ret_6m": -0.45875624866502374,
+        "ret_12m": -0.35617155540418677,
+        "vol_3m_ann": 0.7419686541690063,
+        "drawdown_6m": -0.5603844092664698,
+        "rsi_14": 29.119237285807884,
+        "dist_sma_50": -0.242768375355916,
+        "dist_sma_200": -0.44461307568198216,
+        "volume_trend_1m_vs_6m": 0.24600683139055146
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Catastrophic downtrend with a -55% 3-month return, extreme volatility (74%), and trading deeply below moving averages, indicating a severe falling knife.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2019-01-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Positive 12-month return context with a recent manageable pullback; currently oversold (RSI 31) and resting near its 200-day SMA, offering an attractive buy-the-dip setup.",
+      "features": {
+        "ret_1m": -0.12165187307022018,
+        "ret_3m": -0.15049256538235822,
+        "ret_6m": -0.008609492436247757,
+        "ret_12m": 0.15283463549324727,
+        "vol_3m_ann": 0.3903096533750463,
+        "drawdown_6m": -0.18227978377758203,
+        "rsi_14": 31.185600804636138,
+        "dist_sma_50": -0.07714687735759596,
+        "dist_sma_200": -0.05330787590694719,
+        "volume_trend_1m_vs_6m": 0.4807670119418377
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Positive 12-month return context with a recent manageable pullback; currently oversold (RSI 31) and resting near its 200-day SMA, offering an attractive buy-the-dip setup.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2019-01-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Steep 3-month drawdown (-37.7%) and deeply oversold RSI (27.2) coupled with elevated volume suggests intense downside momentum and a broken trend.",
+      "features": {
+        "ret_1m": -0.20377438425196137,
+        "ret_3m": -0.37767755800902614,
+        "ret_6m": -0.22147375356926846,
+        "ret_12m": -0.16216943468547962,
+        "vol_3m_ann": 0.4390512946793522,
+        "drawdown_6m": -0.38515923345235725,
+        "rsi_14": 27.229561851326295,
+        "dist_sma_50": -0.22439653763863188,
+        "dist_sma_200": -0.25950565794153035,
+        "volume_trend_1m_vs_6m": 0.3637455415474511
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Steep 3-month drawdown (-37.7%) and deeply oversold RSI (27.2) coupled with elevated volume suggests intense downside momentum and a broken trend.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2019-01-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Boasts the highest 12-month return (+26.2%) but exhibits higher volatility and a steeper recent drawdown; presents a higher-beta trend-following dip buy.",
+      "features": {
+        "ret_1m": -0.11234963704887502,
+        "ret_3m": -0.23894261995171984,
+        "ret_6m": -0.11433561986377383,
+        "ret_12m": 0.2617892082128297,
+        "vol_3m_ann": 0.5575892366599886,
+        "drawdown_6m": -0.34103783046300673,
+        "rsi_14": 37.10955148162793,
+        "dist_sma_50": -0.06371163574417171,
+        "dist_sma_200": -0.11751180988048782,
+        "volume_trend_1m_vs_6m": 0.3135768424896861
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Boasts the highest 12-month return (+26.2%) but exhibits higher volatility and a steeper recent drawdown; presents a higher-beta trend-following dip buy.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2019-01-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Displays the lowest volatility (36.2%) and mildest recent drawdowns of the group; consolidating relatively close to its moving averages, warranting a neutral stance.",
+      "features": {
+        "ret_1m": -0.07586172234939181,
+        "ret_3m": -0.15084800154506384,
+        "ret_6m": -0.08135056037786648,
+        "ret_12m": -0.04448334437040291,
+        "vol_3m_ann": 0.3618362160195882,
+        "drawdown_6m": -0.23401798435658983,
+        "rsi_14": 39.93241504059012,
+        "dist_sma_50": -0.03310361920015614,
+        "dist_sma_200": -0.08621218809847508,
+        "volume_trend_1m_vs_6m": 0.10674419470640584
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Displays the lowest volatility (36.2%) and mildest recent drawdowns of the group; consolidating relatively close to its moving averages, warranting a neutral stance.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2019-01-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Trapped in a persistent long-term downtrend (-31.6% over 6 months, -27.3% over 12 months) and trading significantly below its 200-day SMA with weak momentum.",
+      "features": {
+        "ret_1m": -0.0630820609486874,
+        "ret_3m": -0.1731624787764584,
+        "ret_6m": -0.3164529620250094,
+        "ret_12m": -0.2738395234570522,
+        "vol_3m_ann": 0.41882205816811774,
+        "drawdown_6m": -0.4296091738914536,
+        "rsi_14": 37.52448189204542,
+        "dist_sma_50": -0.06427463052407889,
+        "dist_sma_200": -0.2170209281002774,
+        "volume_trend_1m_vs_6m": 0.06983426833743112
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Trapped in a persistent long-term downtrend (-31.6% over 6 months, -27.3% over 12 months) and trading significantly below its 200-day SMA with weak momentum.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

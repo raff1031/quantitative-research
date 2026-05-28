@@ -1,0 +1,177 @@
+{
+  "name": "Feature Only MegaCap TA 2018 Gemini 2019-04-03",
+  "created_on": "2026-05-10",
+  "trade_date": "2019-04-03",
+  "provider": "google",
+  "quick_model": "gemini-3.1-pro-preview",
+  "deep_model": "gemini-3.1-pro-preview",
+  "analysts": [
+    "feature_only_anonymous"
+  ],
+  "rating_to_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": -0.5,
+    "Sell": -1.0
+  },
+  "rating_to_long_only_weight": {
+    "Buy": 1.0,
+    "Overweight": 0.5,
+    "Hold": 0.0,
+    "Underweight": 0.0,
+    "Sell": 0.0
+  },
+  "lookahead_controls": {
+    "anonymized_tickers": true,
+    "anonymized_dates": true,
+    "tool_calls": false,
+    "feature_hash": "2ab1e5797dbde303d7dbc494a6528c0beaf24ce8ecfe75e45b0ba3fae3eaaa73"
+  },
+  "decisions": [
+    {
+      "ticker": "NVDA",
+      "asset_id": "Asset_001",
+      "trade_date": "2019-04-03",
+      "rating": "Sell",
+      "target_weight_long_short": -1.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Massive 6-month drawdown and negative 12-month returns; despite a sharp short-term bounce, it remains below its 200-day SMA and is overbought on RSI.",
+      "features": {
+        "ret_1m": 0.20508586789284866,
+        "ret_3m": 0.3860992883767018,
+        "ret_6m": -0.34682263734734065,
+        "ret_12m": -0.1603119509190195,
+        "vol_3m_ann": 0.5150306476106116,
+        "drawdown_6m": -0.5563521248509363,
+        "rsi_14": 73.79289124819886,
+        "dist_sma_50": 0.18001334163283733,
+        "dist_sma_200": -0.07727862691153042,
+        "volume_trend_1m_vs_6m": -0.08647716944881423
+      },
+      "final_trade_decision": "**Rating**: Sell\n\n**Investment Thesis**: Massive 6-month drawdown and negative 12-month returns; despite a sharp short-term bounce, it remains below its 200-day SMA and is overbought on RSI.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "MSFT",
+      "asset_id": "Asset_002",
+      "trade_date": "2019-04-03",
+      "rating": "Buy",
+      "target_weight_long_short": 1.0,
+      "target_weight_long_only": 1.0,
+      "feature_only": true,
+      "rationale": "Strongest overall profile with positive returns across all timeframes, highest 12-month momentum, lowest historical volatility, and shallowest drawdowns.",
+      "features": {
+        "ret_1m": 0.07403784044253214,
+        "ret_3m": 0.19147916433629053,
+        "ret_6m": 0.04664705375762668,
+        "ret_12m": 0.3598820657641475,
+        "vol_3m_ann": 0.22463512027389662,
+        "drawdown_6m": -0.17915554987937,
+        "rsi_14": 68.86397280802976,
+        "dist_sma_50": 0.0794561721226783,
+        "dist_sma_200": 0.11872667340117538,
+        "volume_trend_1m_vs_6m": -0.20636851500611864
+      },
+      "final_trade_decision": "**Rating**: Buy\n\n**Investment Thesis**: Strongest overall profile with positive returns across all timeframes, highest 12-month momentum, lowest historical volatility, and shallowest drawdowns.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AAPL",
+      "asset_id": "Asset_003",
+      "trade_date": "2019-04-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Showing robust 3-month recovery momentum and has crossed back above its 200-day SMA, though a large 6-month drawdown remains a historical drag.",
+      "features": {
+        "ret_1m": 0.11291521247043845,
+        "ret_3m": 0.2423240160229827,
+        "ret_6m": -0.13371294020585334,
+        "ret_12m": 0.1777697183922997,
+        "vol_3m_ann": 0.3209885011007938,
+        "drawdown_6m": -0.38515923345235725,
+        "rsi_14": 68.62186925364473,
+        "dist_sma_50": 0.11104523504453101,
+        "dist_sma_200": 0.0311382740132653,
+        "volume_trend_1m_vs_6m": -0.1592850284684415
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Showing robust 3-month recovery momentum and has crossed back above its 200-day SMA, though a large 6-month drawdown remains a historical drag.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "AMZN",
+      "asset_id": "Asset_004",
+      "trade_date": "2019-04-03",
+      "rating": "Underweight",
+      "target_weight_long_short": -0.5,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Good 12-month returns, but hindered by negative 6-month momentum, a large historical drawdown, overbought RSI levels, and declining volume.",
+      "features": {
+        "ret_1m": 0.07579049884014877,
+        "ret_3m": 0.1829411028744179,
+        "ret_6m": -0.09163023054446584,
+        "ret_12m": 0.30792719319947226,
+        "vol_3m_ann": 0.2959271888238171,
+        "drawdown_6m": -0.3182401634407517,
+        "rsi_14": 74.01429638764715,
+        "dist_sma_50": 0.08221098508426938,
+        "dist_sma_200": 0.0485492506453673,
+        "volume_trend_1m_vs_6m": -0.26897879654558365
+      },
+      "final_trade_decision": "**Rating**: Underweight\n\n**Investment Thesis**: Good 12-month returns, but hindered by negative 6-month momentum, a large historical drawdown, overbought RSI levels, and declining volume.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "GOOGL",
+      "asset_id": "Asset_005",
+      "trade_date": "2019-04-03",
+      "rating": "Overweight",
+      "target_weight_long_short": 0.5,
+      "target_weight_long_only": 0.5,
+      "feature_only": true,
+      "rationale": "Demonstrates consistent compounding with positive returns across all periods, low volatility, a manageable maximum drawdown, and a healthy, neutral RSI.",
+      "features": {
+        "ret_1m": 0.03559736920104606,
+        "ret_3m": 0.14803533182573902,
+        "ret_6m": 0.0018865610262932542,
+        "ret_12m": 0.18860679324660956,
+        "vol_3m_ann": 0.23144075285676302,
+        "drawdown_6m": -0.1872507832741096,
+        "rsi_14": 55.936603613699944,
+        "dist_sma_50": 0.054035880777359546,
+        "dist_sma_200": 0.06028601445205295,
+        "volume_trend_1m_vs_6m": -0.22585918604998367
+      },
+      "final_trade_decision": "**Rating**: Overweight\n\n**Investment Thesis**: Demonstrates consistent compounding with positive returns across all periods, low volatility, a manageable maximum drawdown, and a healthy, neutral RSI.",
+      "trader_plan": "**Action**: Buy\n\n**Reasoning**: Feature-only anonymous rating."
+    },
+    {
+      "ticker": "META",
+      "asset_id": "Asset_006",
+      "trade_date": "2019-04-03",
+      "rating": "Hold",
+      "target_weight_long_short": 0.0,
+      "target_weight_long_only": 0.0,
+      "feature_only": true,
+      "rationale": "Strong 3-month momentum and positive long-term trends, maintaining price above key moving averages, though offset by slightly elevated volatility.",
+      "features": {
+        "ret_1m": 0.01331303455796462,
+        "ret_3m": 0.2790388508537476,
+        "ret_6m": 0.06833288253647685,
+        "ret_12m": 0.11165202335416913,
+        "vol_3m_ann": 0.33841780726697257,
+        "drawdown_6m": -0.23622467069836794,
+        "rsi_14": 55.29376523421741,
+        "dist_sma_50": 0.056695214338928324,
+        "dist_sma_200": 0.06037780133544457,
+        "volume_trend_1m_vs_6m": -0.20443345715932026
+      },
+      "final_trade_decision": "**Rating**: Hold\n\n**Investment Thesis**: Strong 3-month momentum and positive long-term trends, maintaining price above key moving averages, though offset by slightly elevated volatility.",
+      "trader_plan": "**Action**: Hold\n\n**Reasoning**: Feature-only anonymous rating."
+    }
+  ]
+}

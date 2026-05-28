@@ -30,3 +30,28 @@ desktop.ini
 *.key
 *.pem
 config_private.py
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Large result / cache dirs
+cache_v72*/
+run_v72*/
+stat_arb_results*/
+mega_portfolio_results/
+storage/
+backup/
+strategy_outputs/
+strategy_outputs_clean/
+backtest_outputs*/
+.cache/
+
+# Logs & temp
+*.log
+pipeline_log*.txt
+nul
+
+# Egg info
+*.egg-info/

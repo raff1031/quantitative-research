@@ -1,0 +1,15 @@
+{
+  "strategy_total_return": 0.08934412572904749,
+  "benchmark_total_return": 0.026491097141105202,
+  "alpha_total": 0.06285302858794228,
+  "strategy_ann_return": 0.42408035097683316,
+  "benchmark_ann_return": 0.11406351881983579,
+  "strategy_ann_vol": 0.318221365347916,
+  "benchmark_ann_vol": 0.13809135322612823,
+  "strategy_sharpe_0rf": 1.3326583226527862,
+  "benchmark_sharpe_0rf": 0.8260004421352419,
+  "strategy_max_drawdown": -0.13868754613679968,
+  "benchmark_max_drawdown": -0.08405621664941498,
+  "daily_observations": 61.0,
+  "rebalances": 1.0
+}

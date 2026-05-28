@@ -160,18 +160,62 @@ S&P 500 ranking by FCF yield and growth consistency. Monthly rebalancing, 120-st
 
 ---
 
+### 11. XGBoost Market Model (v72 series)
+`tutor-ai/`
+
+Multi-asset signal model across AAPL, GOOG, TSLA, MRNA, LLY, ETH-USD, SOL-USD and Nasdaq futures. The model stack combines GARCH-filtered returns, a 3-state Gaussian HMM for regime detection, fractionally differenced price series (d=0.5), Google Trends z-scores, transformer-based news sentiment, and XGBoost with RandomizedSearchCV tuning. Features are always lagged by one period; the OOS window is 6 months with 12 months validation and 10-day purge gaps between folds.
+
+The version history is tracked in `DIFFERENZE_V2.1_V2.2.md` — includes what changed between iterations and why. Signal generation, portfolio sizing, and live execution are split into separate scripts (`generate_signals.py`, `equity_optimizer.py`, `run_pipeline.py`) to keep each piece testable independently.
+
+CGBoost variants (`cgboost v80.py`, `cgboost v82.py`) explore custom boosting with regime-conditional objectives. Two smoketests check that no forward-looking data leaks into the feature set.
+
+---
+
+### 12. Sector Stat-Arb Suite
+`tutor-ai/stat_arb_biotech.py` · `stat_arb_commodity.py` · `stat_arb_macro.py` · `stat_arb_tech_momentum.py`
+
+Four stat-arb modules each targeting a different market segment:
+
+- **Biotech**: pairs within IBB/XBI constituents, cointegration-screened, sized by FDA event calendar
+- **Commodity**: spreads across energy, metals, and ag ETFs; mean-reversion on seasonally adjusted spreads
+- **Macro**: relative value across rates, currencies, and equity indices using correlated macro pairs
+- **Tech Momentum**: cross-sectional momentum with mean-reversion overlay on semiconductor/cloud pairs
+
+All four share the same spread construction (log-price, Kalman hedge ratio) and entry/exit logic (z-score thresholds, hard stop). Live signal output feeds into the main portfolio manager.
+
+---
+
+### 13. IBKR Live Execution
+`tutor-ai/tws_executor.py`
+
+Live and paper trading via IB Gateway on ports 4001/4002. The executor handles order routing, position tracking, fill confirmation, and emergency exits. Receives signals from `generate_signals.py` and executes sized orders without manual intervention. Supports dry-run mode for pre-trade validation before going live. Integrates with `pnl_tracker.py` for real-time P&L logging and `mega_portfolio.py` for multi-strategy position consolidation. Full pipeline runs via `run_pipeline.py`, which chains signal generation, dry-run, optional live execution, and logs each run to `auto_run_history.csv`.
+
+---
+
+### 14. TradingAgents — Multi-Agent LLM Framework
+`quant-ai/tradingagents/`
+
+Extension of the open-source TradingAgents framework (TauricResearch/TradingAgents, arxiv:2412.20138). The framework decomposes trading decisions across specialized LLM agents: fundamental analyst, sentiment analyst, news analyst, technical analyst, bull/bear researcher debate, trader, and portfolio manager with risk gating.
+
+The local extension adds a quarterly backtest pipeline (`quarterly_pipeline/`) tested on a megacap universe 2018–2025, a point-in-time feature pipeline (`feature_pipeline/`) that reconstructs realistic signal availability dates, a VWAP trend backtest (`vwap_trend_backtest.py`), a stat-arb pairs module (`statarb_pairs_backtest.py`), and a WRDS PEAD research scaffold (`wrds_pead_revisions_scaffold.py`).
+
+The PEAD scaffold is designed for strict point-in-time integrity: signal availability is keyed to IBES filing dates rather than report period end, with an IBES-CRSP link for permno resolution and optional Compustat Point-in-Time enrichment. The spec documents the full dataset stack (IBES detail history, actuals, adjustment factors, CRSP daily) and the design constraints.
+
+---
+
 ## Stack
 
 | | |
 |--|--|
 | Languages | Python 3.10, C# (.NET / NinjaTrader 8) |
-| ML | PyTorch (CUDA), scikit-learn, XGBoost, hmmlearn |
+| ML | PyTorch (CUDA), scikit-learn, XGBoost, hmmlearn, transformers |
+| LLM agents | TradingAgents (LangGraph, OpenAI/Anthropic/Gemini backends) |
 | Market making | Hummingbot ScriptStrategyBase V2 |
-| Data | yfinance, Binance/Bybit WebSocket, NinjaTrader feed |
-| Execution | Hummingbot, NinjaTrader 8, custom asyncio engine |
-| Backtesting | Custom walk-forward, purged/embargoed CV |
+| Data | yfinance, Binance/Bybit WebSocket, NinjaTrader feed, IBKR TWS, WRDS/IBES |
+| Execution | Hummingbot, NinjaTrader 8, IBKR TWS (live + paper), custom asyncio engine |
+| Backtesting | Custom walk-forward, purged/embargoed CV, quarterly pipeline (2018–2025) |
 | Viz | Matplotlib, Plotly, HTML dashboards |
-| Quant | statsmodels, arch, scipy, vaderSentiment |
+| Quant | statsmodels, arch, scipy, vaderSentiment, pytrends |
 
 ---
 

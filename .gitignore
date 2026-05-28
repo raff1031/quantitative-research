@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.ipynb_checkpoints/
+.env
+*.egg-info/
+dist/
+build/
+
+# Data files (too large for git)
+*.parquet
+*.h5
+*.hdf5
+
+# Keep CSVs that are backtest results (small), ignore raw data
+data_spy_yahoo/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Secrets
+*.key
+*.pem
+config_private.py

@@ -1,0 +1,5 @@
+yfinance>=0.2.36
+pandas>=2.0
+numpy>=1.24
+ta>=0.11.0
+requests>=2.31

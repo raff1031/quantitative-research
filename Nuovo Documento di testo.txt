@@ -1,0 +1,862 @@
+# optimized_ps_strategy.py - Strategia P/S con gestione portafoglio ottimizzata
+import os
+import time
+import math
+import warnings
+from dataclasses import dataclass
+from datetime import datetime, timedelta
+from typing import Dict, List, Optional, Tuple
+
+import numpy as np
+import pandas as pd
+import yfinance as yf
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec
+
+warnings.filterwarnings("ignore", category=FutureWarning)
+
+# ============================= CONFIG =================================
+
+VERBOSE = True
+YF_SLEEP = 0.02
+
+@dataclass
+class BacktestConfig:
+    initial_capital: float = 10_000.0
+    start_year: int = 2010
+    rolling_window: int = 60
+    min_periods: int = 30
+    entry_k_std: float = 0.0            # Compra sotto media
+    exit_k_std: float = 1.0             # Vendi sopra media+1std
+    
+    # GESTIONE PORTAFOGLIO OTTIMIZZATA
+    equal_position_sizing: bool = True  # Posizioni equi-pesate invece di importo fisso
+    position_size_pct: float = 0.02     # 2% del portafoglio per posizione
+    max_positions: int = 25             # Massimo 25 posizioni contemporanee
+    rebalance_frequency: int = 21       # Rebalance ogni 21 giorni
+    stop_loss_atr_mult: float = 2.0     # Stop loss a 2 ATR
+    take_profit_pct: float = 0.15       # Take profit a +15%
+    
+    min_trading_days: int = 100         # Min giorni per ticker
+    transaction_cost_pct: float = 0.001 # 0.1% costi transazione (più realistico)
+    atr_period: int = 14                # Per calcolo ATR
+    random_seed: int = 42
+
+# ============================= UNIVERSE ===============================
+
+LARGE_CAP_UNIVERSE = [
+    # Tech
+    "AAPL","MSFT","AMZN","GOOGL","GOOG","ORCL","CSCO","INTC","IBM","QCOM","AMAT","ADI","NVDA","AMD","CRM",
+    
+    # Finance
+    "JPM","BAC","WFC","GS","MS","C","USB","PNC","COF","AXP","BLK","SCHW","KEY","CMA","FITB","RF",
+    
+    # Healthcare
+    "JNJ","PFE","MRK","ABBV","LLY","UNH","CVS","BMY","ABT","GILD","AMGN","MDT","TMO","DHR","BSX","ISRG",
+    
+    # Consumer
+    "WMT","HD","TGT","COST","LOW","KO","PEP","PG","MCD","SBUX","NKE","TJX","DIS",
+    
+    # Energy
+    "XOM","CVX","COP","SLB","HAL","OXY","APA","DVN","EOG",
+    
+    # Industrials
+    "GE","CAT","MMM","HON","BA","LMT","NOC","GD","UPS","FDX","DE","EMR","ITW",
+    
+    # Materials
+    "DD","DOW","LYB","APD","PPG","SHW","ECL","FCX","NEM",
+    
+    # Utilities
+    "D","SO","NEE","DUK","EXC","PCG","ED","AEP","XEL",
+    
+    # REITs
+    "AMT","PLD","PSA","EQR","AVB","UDR","CPT","MAA","ESS","BXP","SPG"
+]
+
+def get_universe() -> List[str]:
+    return LARGE_CAP_UNIVERSE
+
+# ============================= UTILS ==================================
+
+def today_str() -> str:
+    return datetime.utcnow().strftime("%Y-%m-%d")
+
+def years_ago_date(years: int) -> str:
+    return (datetime.utcnow() - timedelta(days=int(years*365.25))).strftime("%Y-%m-%d")
+
+# ========================= Data fetching ===============================
+
+def fetch_prices_yf(symbol: str, start: str, end: str) -> pd.Series:
+    try:
+        data = yf.download(symbol, start=start, end=end, progress=False, auto_adjust=True, threads=False)
+        if data is None or len(data) == 0:
+            return pd.Series(dtype=float)
+        
+        close = data["Close"] if "Close" in data.columns else data["Adj Close"]
+        if isinstance(close, pd.DataFrame):
+            close = close.iloc[:, 0]
+        
+        close = pd.to_numeric(close, errors="coerce").dropna()
+        close.index = pd.to_datetime(close.index).tz_localize(None)
+        close.name = "price"
+        return close
+    except Exception:
+        return pd.Series(dtype=float)
+
+def fetch_ohlcv_yf(symbol: str, start: str, end: str) -> pd.DataFrame:
+    """Scarica OHLCV per calcolo ATR"""
+    try:
+        data = yf.download(symbol, start=start, end=end, progress=False, auto_adjust=True, threads=False)
+        if data is None or len(data) == 0:
+            return pd.DataFrame()
+        
+        data.index = pd.to_datetime(data.index).tz_localize(None)
+        return data
+    except Exception:
+        return pd.DataFrame()
+
+def fetch_yf_fundamentals(symbol: str) -> Tuple[pd.Series, float]:
+    try:
+        ticker = yf.Ticker(symbol)
+        
+        annual_financials = ticker.financials
+        quarterly_financials = ticker.quarterly_financials
+        
+        financials = None
+        
+        if annual_financials is not None and not annual_financials.empty:
+            financials = annual_financials
+        elif quarterly_financials is not None and not quarterly_financials.empty:
+            financials = quarterly_financials
+        
+        if financials is None or financials.empty:
+            return pd.Series(dtype=float), np.nan
+        
+        revenue_row = None
+        for idx in financials.index:
+            idx_str = str(idx).lower()
+            if any(term in idx_str for term in ["total revenue", "revenue", "net sales", "sales"]):
+                revenue_row = idx
+                break
+        
+        if revenue_row is None:
+            return pd.Series(dtype=float), np.nan
+        
+        revenue_series = financials.loc[revenue_row]
+        revenue_series = pd.to_numeric(revenue_series, errors="coerce").dropna()
+        revenue_series = revenue_series.sort_index()
+        
+        info = ticker.info
+        shares = info.get("sharesOutstanding", None)
+        if shares is None:
+            shares = info.get("impliedSharesOutstanding", None)
+        if shares is None:
+            shares = info.get("floatShares", None)
+        
+        shares = float(shares) if shares and np.isfinite(float(shares)) else np.nan
+        
+        return revenue_series, shares
+        
+    except Exception:
+        return pd.Series(dtype=float), np.nan
+
+def compute_ps_from_yf_data(price: pd.Series, revenue_series: pd.Series, shares_outstanding: float) -> pd.Series:
+    if revenue_series.empty or not np.isfinite(shares_outstanding) or shares_outstanding <= 0:
+        return pd.Series(index=price.index, dtype=float)
+    
+    if len(revenue_series) >= 4:
+        time_diffs = revenue_series.index.to_series().diff().dt.days.dropna()
+        avg_diff = time_diffs.mean()
+        
+        if avg_diff < 150:  # quarterly
+            revenue_use = revenue_series.rolling(window=4, min_periods=1).sum()
+        else:  # annual
+            revenue_use = revenue_series
+    else:
+        revenue_use = revenue_series
+    
+    revenue_use = revenue_use.dropna()
+    if revenue_use.empty:
+        return pd.Series(index=price.index, dtype=float)
+    
+    revps = revenue_use / shares_outstanding
+    revps_daily = revps.reindex(price.index, method="ffill")
+    
+    ps_daily = price / revps_daily
+    ps_daily = ps_daily.replace([np.inf, -np.inf], np.nan)
+    ps_daily = ps_daily[(ps_daily > 0) & np.isfinite(ps_daily)]
+    
+    return ps_daily
+
+def calculate_atr(ohlc: pd.DataFrame, period: int = 14) -> pd.Series:
+    """Calcola Average True Range per stop loss dinamici"""
+    high = ohlc['High']
+    low = ohlc['Low']
+    close = ohlc['Close']
+    
+    tr1 = high - low
+    tr2 = abs(high - close.shift())
+    tr3 = abs(low - close.shift())
+    
+    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+    atr = tr.rolling(period).mean()
+    
+    return atr
+
+# ========================= SEGNALI P/S BASE =========================
+
+def compute_signals_from_ps(price: pd.Series, ps_series: pd.Series, atr: pd.Series, 
+                         cfg: BacktestConfig) -> pd.DataFrame:
+    """Segnali P/S base + ATR per stop loss"""
+    df = pd.DataFrame(index=price.index)
+    df["price"] = price
+    df["ps"] = ps_series.reindex(df.index)
+    df["atr"] = atr.reindex(df.index)
+    df.loc[~np.isfinite(df["ps"]), "ps"] = np.nan
+
+    # Rolling stats
+    df["ps_ma"] = df["ps"].rolling(cfg.rolling_window, min_periods=cfg.min_periods).mean()
+    df["ps_std"] = df["ps"].rolling(cfg.rolling_window, min_periods=cfg.min_periods).std()
+
+    # Soglie
+    df["entry_threshold"] = df["ps_ma"] + cfg.entry_k_std * df["ps_std"]
+    df["exit_threshold"] = df["ps_ma"] + cfg.exit_k_std * df["ps_std"]
+
+    # Segnali base
+    df["entry_cond"] = (df["ps"] < df["entry_threshold"]) & df["ps_ma"].notna() & df["ps_std"].notna()
+    df["exit_cond"] = (df["ps"] > df["exit_threshold"]) & df["ps_ma"].notna() & df["ps_std"].notna()
+    
+    return df
+
+# ========================= BACKTEST OTTIMIZZATO ======================
+
+@dataclass
+class Position:
+    ticker: str
+    entry_date: pd.Timestamp
+    entry_price: float
+    qty: float
+    stop_loss: float
+    take_profit: float
+    last_rebalanced: pd.Timestamp
+
+@dataclass
+class Trade:
+    date: pd.Timestamp
+    ticker: str
+    action: str
+    price: float
+    qty: float
+    cash_after: float
+    reason: str = "SIGNAL"  # SIGNAL, STOP, PROFIT, REBALANCE
+
+def optimized_portfolio_backtest(signal_map: Dict[str, pd.DataFrame], 
+                               cfg: BacktestConfig) -> Tuple[pd.DataFrame, List[Trade]]:
+    """
+    Backtest con gestione portafoglio ottimizzata:
+    - Equal weight
+    - Stop loss e take profit
+    - Rebalancing
+    """
+    print("=== BACKTEST OTTIMIZZATO ===")
+    
+    first_idx = min(df.index.min() for df in signal_map.values())
+    last_idx = max(df.index.max() for df in signal_map.values())
+    
+    spy = fetch_prices_yf("SPY", start=first_idx.strftime("%Y-%m-%d"), end=last_idx.strftime("%Y-%m-%d"))
+    calendar = spy.index
+
+    cash = cfg.initial_capital
+    positions: Dict[str, Position] = {}
+    trades: List[Trade] = []
+    equity_curve = []
+
+    price_map: Dict[str, pd.Series] = {t: df["price"].reindex(calendar) for t, df in signal_map.items()}
+    np.random.seed(cfg.random_seed)
+
+    def portfolio_value(day: pd.Timestamp) -> float:
+        val = cash
+        for ticker, pos in positions.items():
+            p = price_map[ticker].get(day, np.nan)
+            if np.isfinite(p):
+                val += pos.qty * p
+        return val
+    
+    def calculate_position_size(port_val: float) -> float:
+        """Calcola size in $ per nuova posizione"""
+        if cfg.equal_position_sizing:
+            max_positions = cfg.max_positions or 1
+            return port_val * cfg.position_size_pct
+        else:
+            return 50.0  # Importo fisso come prima
+    
+    last_rebalance_day = None
+    rebalance_needed = False
+
+    for day in calendar:
+        port_val = portfolio_value(day)
+        
+        # CHECK STOP LOSS / TAKE PROFIT
+        tickers_to_sell = []
+        for ticker, position in positions.items():
+            price = price_map[ticker].get(day, np.nan)
+            if not np.isfinite(price):
+                continue
+                
+            # Stop loss
+            if price <= position.stop_loss:
+                tickers_to_sell.append((ticker, "STOP"))
+            
+            # Take profit
+            elif price >= position.take_profit:
+                tickers_to_sell.append((ticker, "PROFIT"))
+        
+        # REBALANCE CHECK
+        if cfg.rebalance_frequency > 0:
+            if last_rebalance_day is None:
+                last_rebalance_day = day
+                rebalance_needed = False
+            elif (day - last_rebalance_day).days >= cfg.rebalance_frequency:
+                rebalance_needed = True
+                last_rebalance_day = day
+        
+        # 1) SELL
+        # 1.1) Stop loss e take profit
+        for ticker, reason in tickers_to_sell:
+            position = positions[ticker]
+            price = price_map[ticker].get(day, np.nan)
+            
+            proceeds = position.qty * price
+            transaction_cost = proceeds * cfg.transaction_cost_pct
+            cash += proceeds - transaction_cost
+            
+            trades.append(Trade(day, ticker, "SELL", float(price), float(position.qty), 
+                                float(cash), reason))
+            
+            del positions[ticker]
+        
+        # 1.2) Vendite su segnale
+        for ticker, df in signal_map.items():
+            if ticker not in positions:
+                continue
+                
+            price = price_map[ticker].get(day, np.nan)
+            if not np.isfinite(price):
+                continue
+                
+            # Vendi su segnale
+            if bool(df["exit_cond"].reindex(calendar).get(day, False)):
+                position = positions[ticker]
+                
+                proceeds = position.qty * price
+                transaction_cost = proceeds * cfg.transaction_cost_pct
+                cash += proceeds - transaction_cost
+                
+                trades.append(Trade(day, ticker, "SELL", float(price), float(position.qty), 
+                                   float(cash), "SIGNAL"))
+                
+                del positions[ticker]
+        
+        # 1.3) Rebalance (vendi eccesso)
+        if rebalance_needed and positions:
+            port_val = portfolio_value(day)
+            target_position_value = port_val * cfg.position_size_pct
+            
+            for ticker, position in list(positions.items()):
+                price = price_map[ticker].get(day, np.nan)
+                if not np.isfinite(price):
+                    continue
+                    
+                current_value = position.qty * price
+                
+                # Se valore > target, vendi eccesso
+                if current_value > target_position_value * 1.1:  # 10% tolerance
+                    excess_value = current_value - target_position_value
+                    excess_qty = excess_value / price
+                    
+                    if excess_qty > 0:
+                        proceeds = excess_qty * price
+                        transaction_cost = proceeds * cfg.transaction_cost_pct
+                        cash += proceeds - transaction_cost
+                        
+                        positions[ticker].qty -= excess_qty
+                        positions[ticker].last_rebalanced = day
+                        
+                        trades.append(Trade(day, ticker, "SELL", float(price), 
+                                           float(excess_qty), float(cash), "REBALANCE"))
+        
+        # Aggiorna port_val dopo vendite
+        port_val = portfolio_value(day)
+        
+        # 2) BUY
+        # 2.1) Compra su segnale
+        buy_candidates = []
+        for ticker, df in signal_map.items():
+            if ticker in positions:
+                continue
+                
+            price = price_map[ticker].get(day, np.nan)
+            if not np.isfinite(price):
+                continue
+            
+            # Compra su segnale
+            if bool(df["entry_cond"].reindex(calendar).get(day, False)):
+                atr_val = df["atr"].reindex(calendar).get(day, np.nan)
+                if not np.isfinite(atr_val) or atr_val <= 0:
+                    atr_val = price * 0.02  # Fallback: 2% del prezzo
+                
+                buy_candidates.append({
+                    'ticker': ticker,
+                    'price': price,
+                    'atr': atr_val
+                })
+        
+        # Limita numero di nuove posizioni per giorno
+        if buy_candidates:
+            port_val = portfolio_value(day)
+            position_size_usd = calculate_position_size(port_val)
+            max_new_positions = cfg.max_positions - len(positions) if cfg.max_positions else 999
+            
+            # Ordina per P/S in modo da prendere quelli più a sconto
+            buy_candidates = sorted(buy_candidates, 
+                                   key=lambda x: signal_map[x['ticker']]["ps"].reindex(calendar).get(day, 999))
+            
+            for candidate in buy_candidates[:max_new_positions]:
+                ticker = candidate['ticker']
+                price = candidate['price']
+                atr = candidate['atr']
+                
+                # Calcola size e controlla liquidità
+                if cash < position_size_usd * 0.9:  # Serve almeno 90% cash
+                    continue
+                
+                qty = position_size_usd / price
+                transaction_cost = position_size_usd * cfg.transaction_cost_pct
+                
+                if qty * price > cash - transaction_cost:
+                    qty = (cash - transaction_cost) / price
+                
+                if qty <= 0:
+                    continue
+                
+                # Calcola stop loss e take profit
+                stop_loss = price - atr * cfg.stop_loss_atr_mult
+                take_profit = price * (1 + cfg.take_profit_pct)
+                
+                # Esegui trade
+                cash -= qty * price + transaction_cost
+                positions[ticker] = Position(
+                    ticker=ticker,
+                    entry_date=day,
+                    entry_price=price,
+                    qty=qty,
+                    stop_loss=stop_loss,
+                    take_profit=take_profit,
+                    last_rebalanced=day
+                )
+                
+                trades.append(Trade(day, ticker, "BUY", float(price), 
+                                   float(qty), float(cash), "SIGNAL"))
+        
+        # 2.2) Rebalance (compra sottopeso)
+        if rebalance_needed and positions and cash > 0:
+            port_val = portfolio_value(day)
+            target_position_value = port_val * cfg.position_size_pct
+            
+            for ticker, position in list(positions.items()):
+                price = price_map[ticker].get(day, np.nan)
+                if not np.isfinite(price):
+                    continue
+                    
+                current_value = position.qty * price
+                
+                # Se valore < target, compra più
+                if current_value < target_position_value * 0.9:  # 10% tolerance
+                    deficit_value = target_position_value - current_value
+                    deficit_qty = deficit_value / price
+                    
+                    if deficit_qty > 0:
+                        cost = deficit_qty * price
+                        transaction_cost = cost * cfg.transaction_cost_pct
+                        
+                        if cost + transaction_cost > cash:
+                            deficit_qty = cash / (price * (1 + cfg.transaction_cost_pct))
+                            cost = deficit_qty * price
+                            transaction_cost = cost * cfg.transaction_cost_pct
+                        
+                        if deficit_qty > 0:
+                            cash -= cost + transaction_cost
+                            positions[ticker].qty += deficit_qty
+                            positions[ticker].last_rebalanced = day
+                            
+                            trades.append(Trade(day, ticker, "BUY", float(price), 
+                                              float(deficit_qty), float(cash), "REBALANCE"))
+        
+        # Reset rebalance flag
+        rebalance_needed = False
+        
+        # Aggiungi equity curve point
+        equity_curve.append({
+            "date": day, 
+            "equity": portfolio_value(day), 
+            "cash": cash,
+            "positions": len(positions)
+        })
+
+    # Fine backtest
+    equity_df = pd.DataFrame(equity_curve).set_index("date")
+    return equity_df, trades
+
+def buy_hold_benchmark(start_date: str, end_date: str, initial_capital: float = 10000) -> pd.DataFrame:
+    """Buy & Hold SPY benchmark"""
+    spy = fetch_prices_yf("SPY", start_date, end_date)
+    if spy.empty:
+        return pd.DataFrame()
+    
+    initial_shares = initial_capital / spy.iloc[0]
+    equity_curve = spy * initial_shares
+    
+    return pd.DataFrame({"equity": equity_curve})
+
+# ========================= ANALYSIS & METRICS =========================
+
+def calculate_metrics(equity: pd.DataFrame, benchmark_equity: pd.DataFrame, trades: List[Trade]) -> Dict:
+    """Calcola metriche di performance"""
+    
+    eq = equity["equity"].dropna()
+    bench = benchmark_equity["equity"].dropna() if not benchmark_equity.empty else pd.Series()
+    
+    if len(eq) < 2:
+        return {}
+    
+    # Allinea serie temporali
+    common_dates = eq.index.intersection(bench.index) if not bench.empty else eq.index
+    eq_aligned = eq.reindex(common_dates)
+    bench_aligned = bench.reindex(common_dates) if not bench.empty else None
+    
+    # Rendimenti
+    returns = eq_aligned.pct_change().fillna(0.0)
+    bench_returns = bench_aligned.pct_change().fillna(0.0) if bench_aligned is not None else pd.Series()
+    
+    # Basic metrics
+    total_return = eq_aligned.iloc[-1] / eq_aligned.iloc[0] - 1.0
+    days = (eq_aligned.index[-1] - eq_aligned.index[0]).days
+    annualized_return = (eq_aligned.iloc[-1] / eq_aligned.iloc[0]) ** (365.25/days) - 1.0
+    
+    # Risk metrics
+    volatility = returns.std() * np.sqrt(252)
+    sharpe = annualized_return / volatility if volatility > 0 else 0
+    
+    # Drawdown
+    running_max = eq_aligned.cummax()
+    drawdown = (eq_aligned - running_max) / running_max
+    max_drawdown = drawdown.min()
+    
+    # Benchmark comparison
+    benchmark_annual = 0
+    alpha = 0
+    
+    if not bench_returns.empty and len(bench_returns) > 10:
+        benchmark_total = bench_aligned.iloc[-1] / bench_aligned.iloc[0] - 1.0
+        benchmark_annual = (bench_aligned.iloc[-1] / bench_aligned.iloc[0]) ** (365.25/days) - 1.0
+        alpha = annualized_return - benchmark_annual
+    
+    # Trade analysis
+    trades_by_reason = {}
+    for trade in trades:
+        if trade.reason not in trades_by_reason:
+            trades_by_reason[trade.reason] = []
+        trades_by_reason[trade.reason].append(trade)
+    
+    metrics = {
+        'total_return': total_return,
+        'annualized_return': annualized_return,
+        'volatility': volatility,
+        'sharpe_ratio': sharpe,
+        'max_drawdown': max_drawdown,
+        'benchmark_return': benchmark_annual,
+        'alpha': alpha,
+        'num_trades': len(trades),
+        'trades_by_reason': {k: len(v) for k, v in trades_by_reason.items()}
+    }
+    
+    return metrics
+
+def analyze_trades_by_reason(trades: List[Trade]) -> pd.DataFrame:
+    """Analisi dei trade per reason"""
+    buy_trades = [t for t in trades if t.action == "BUY"]
+    sell_trades = [t for t in trades if t.action == "SELL"]
+    
+    # Conteggio per reason
+    buy_count = {}
+    sell_count = {}
+    
+    for trade in buy_trades:
+        buy_count[trade.reason] = buy_count.get(trade.reason, 0) + 1
+    
+    for trade in sell_trades:
+        sell_count[trade.reason] = sell_count.get(trade.reason, 0) + 1
+    
+    # Crea DataFrame
+    all_reasons = set(list(buy_count.keys()) + list(sell_count.keys()))
+    data = []
+    
+    for reason in all_reasons:
+        data.append({
+            'reason': reason,
+            'buy_count': buy_count.get(reason, 0),
+            'sell_count': sell_count.get(reason, 0),
+            'buy_pct': buy_count.get(reason, 0) / len(buy_trades) if buy_trades else 0,
+            'sell_pct': sell_count.get(reason, 0) / len(sell_trades) if sell_trades else 0
+        })
+    
+    return pd.DataFrame(data)
+
+# ========================= MAIN OPTIMIZED STRATEGY ===================
+
+def run_optimized_ps_strategy(cfg: BacktestConfig):
+    """
+    Strategia P/S ottimizzata con gestione portafoglio migliorata
+    """
+    print("=== STRATEGIA P/S OTTIMIZZATA ===")
+    
+    # Setup
+    start_date = f"{cfg.start_year}-01-01"
+    end_date = today_str()
+    
+    universe_tickers = get_universe()
+    print(f"Universo: {len(universe_tickers)} titoli")
+    
+    # Scarica dati
+    print("Scarico dati...")
+    all_price_data = {}
+    all_ohlcv_data = {}
+    
+    for sym in tqdm(universe_tickers):
+        ohlcv = fetch_ohlcv_yf(sym, start_date, end_date)
+        if not ohlcv.empty and len(ohlcv) > 200:
+            all_price_data[sym] = ohlcv['Close']
+            all_ohlcv_data[sym] = ohlcv
+        time.sleep(YF_SLEEP)
+    
+    print(f"Dati OHLCV per {len(all_price_data)} titoli")
+    
+    # Genera segnali base
+    signal_map = {}
+    
+    for ticker in tqdm(all_price_data.keys()):
+        price = all_price_data[ticker]
+        ohlcv = all_ohlcv_data[ticker]
+        revenue_series, shares = fetch_yf_fundamentals(ticker)
+        
+        if revenue_series.empty or not np.isfinite(shares):
+            continue
+            
+        ps_series = compute_ps_from_yf_data(price, revenue_series, shares)
+        if ps_series.empty:
+            continue
+        
+        # Calcola ATR per stop loss
+        atr = calculate_atr(ohlcv, cfg.atr_period)
+        
+        df = compute_signals_from_ps(price, ps_series, atr, cfg)
+        if df["ps_ma"].dropna().empty:
+            continue
+            
+        signal_map[ticker] = df
+        time.sleep(YF_SLEEP * 0.01)
+    
+    if len(signal_map) < 5:
+        print(f"Troppi pochi segnali, solo {len(signal_map)} titoli")
+        return
+    
+    print(f"Segnali generati per {len(signal_map)} titoli")
+    
+    # Backtest
+    equity, trades = optimized_portfolio_backtest(signal_map, cfg)
+    
+    # Benchmark
+    first_date = equity.index[0].strftime("%Y-%m-%d")
+    last_date = equity.index[-1].strftime("%Y-%m-%d")
+    benchmark_equity = buy_hold_benchmark(first_date, last_date, cfg.initial_capital)
+    
+    # Metriche
+    metrics = calculate_metrics(equity, benchmark_equity, trades)
+    
+    # Analisi trade
+    trade_analysis = analyze_trades_by_reason(trades)
+    
+    # Plot
+    plot_detailed_results(equity, benchmark_equity, trades, trade_analysis, metrics)
+    
+    # Stampa risultati
+    print_detailed_summary(metrics, trade_analysis, equity)
+    
+    return equity, trades, metrics
+
+def plot_detailed_results(equity: pd.DataFrame, benchmark: pd.DataFrame, 
+                         trades: List[Trade], trade_analysis: pd.DataFrame,
+                         metrics: Dict):
+    """Grafici dettagliati con subplot"""
+    fig = plt.figure(figsize=(16, 12))
+    gs = GridSpec(3, 3, figure=fig)
+    
+    # 1. Equity Curve
+    ax1 = fig.add_subplot(gs[0, :])
+    
+    eq = equity["equity"]
+    ben = benchmark["equity"]
+    
+    ax1.plot(eq.index, eq.values, 'b-', linewidth=2, label='P/S Strategy')
+    ax1.plot(ben.index, ben.values, 'r--', linewidth=1.5, label='SPY')
+    
+    # Marca trades (solo ogni 50 per leggibilità)
+    buy_trades = [t for t in trades if t.action == "BUY"][::50]
+    sell_trades = [t for t in trades if t.action == "SELL"][::50]
+    
+    for trade in buy_trades:
+        ax1.scatter(trade.date, trade.cash + trade.qty * trade.price, 
+                   marker='^', color='green', s=40, alpha=0.7)
+    
+    for trade in sell_trades:
+        ax1.scatter(trade.date, trade.cash_after, 
+                   marker='v', color='red', s=40, alpha=0.7)
+    
+    ax1.set_title('Equity Curve', fontsize=14)
+    ax1.grid(True, alpha=0.3)
+    ax1.legend(loc='upper left')
+    
+    # 2. Drawdown
+    ax2 = fig.add_subplot(gs[1, 0])
+    
+    drawdown = (eq / eq.cummax() - 1.0) * 100
+    ax2.fill_between(drawdown.index, drawdown.values, 0, color='red', alpha=0.3)
+    ax2.plot(drawdown.index, drawdown.values, color='red', linewidth=1, alpha=0.5)
+    
+    ax2.set_title('Drawdown (%)', fontsize=12)
+    ax2.set_ylabel('Drawdown %')
+    ax2.grid(True, alpha=0.3)
+    
+    # 3. Relative Strength vs SPY
+    ax3 = fig.add_subplot(gs[1, 1])
+    
+    # Normalizza entrambe le serie a 100
+    eq_norm = eq / eq.iloc[0] * 100
+    ben_norm = ben / ben.iloc[0] * 100
+    
+    # Relative strength
+    rel_str = eq_norm / ben_norm * 100
+    
+    ax3.plot(rel_str.index, rel_str.values, color='blue', linewidth=1.5)
+    ax3.axhline(y=100, color='black', linestyle='--', alpha=0.5)
+    
+    ax3.set_title('Relative Strength vs SPY', fontsize=12)
+    ax3.set_ylabel('Ratio (100 = equal)')
+    ax3.grid(True, alpha=0.3)
+    
+    # 4. Posizioni aperte
+    ax4 = fig.add_subplot(gs[1, 2])
+    
+    ax4.plot(equity.index, equity['positions'].values, color='purple', linewidth=1.5)
+    
+    ax4.set_title('Posizioni Aperte', fontsize=12)
+    ax4.set_ylabel('N. Posizioni')
+    ax4.grid(True, alpha=0.3)
+    
+    # 5. Trade Reasons (Buy)
+    ax5 = fig.add_subplot(gs[2, 0])
+    
+    if 'buy_count' in trade_analysis.columns:
+        buy_reasons = trade_analysis.sort_values('buy_count', ascending=False)
+        ax5.barh(buy_reasons['reason'], buy_reasons['buy_count'], color='green', alpha=0.7)
+        ax5.set_title('Buy Trades per Motivo', fontsize=12)
+        ax5.grid(True, alpha=0.3)
+    
+    # 6. Trade Reasons (Sell)
+    ax6 = fig.add_subplot(gs[2, 1])
+    
+    if 'sell_count' in trade_analysis.columns:
+        sell_reasons = trade_analysis.sort_values('sell_count', ascending=False)
+        ax6.barh(sell_reasons['reason'], sell_reasons['sell_count'], color='red', alpha=0.7)
+        ax6.set_title('Sell Trades per Motivo', fontsize=12)
+        ax6.grid(True, alpha=0.3)
+    
+    # 7. Monthly Returns
+    ax7 = fig.add_subplot(gs[2, 2])
+    
+    monthly_returns = eq.resample('M').last().pct_change().dropna() * 100
+    
+    colors = ['green' if x > 0 else 'red' for x in monthly_returns.values]
+    ax7.bar(range(len(monthly_returns)), monthly_returns.values, color=colors, alpha=0.7)
+    
+    ax7.set_title('Rendimenti Mensili (%)', fontsize=12)
+    ax7.set_ylabel('Rendimento %')
+    ax7.grid(True, alpha=0.3)
+    
+    plt.tight_layout()
+    plt.show()
+
+def print_detailed_summary(metrics: Dict, trade_analysis: pd.DataFrame, equity: pd.DataFrame):
+    """Stampa dettagliata dei risultati"""
+    print(f"\n{'='*60}")
+    print("SUMMARY P/S OPTIMIZED STRATEGY")
+    print(f"{'='*60}")
+    
+    # Performance
+    print(f"PERFORMANCE:")
+    print(f"  Rendimento annualizzato:         {metrics.get('annualized_return', 0)*100:.1f}%")
+    print(f"  SPY benchmark:                   {metrics.get('benchmark_return', 0)*100:.1f}%")
+    print(f"  Alpha:                           {metrics.get('alpha', 0)*100:.1f}%")
+    print(f"  Sharpe Ratio:                    {metrics.get('sharpe_ratio', 0):.2f}")
+    print(f"  Max Drawdown:                    {metrics.get('max_drawdown', 0)*100:.1f}%")
+    
+    # Trade statistics
+    print(f"\nTRADE STATISTICS:")
+    print(f"  Numero totale trades:            {metrics.get('num_trades', 0)}")
+    
+    trade_reasons = metrics.get('trades_by_reason', {})
+    for reason, count in trade_reasons.items():
+        print(f"  - {reason} trades:                 {count}")
+    
+    # Posizioni
+    print(f"\nPOSIZIONI:")
+    print(f"  Massimo posizioni:               {equity['positions'].max():.0f}")
+    print(f"  Media posizioni:                 {equity['positions'].mean():.1f}")
+    
+    # Periodo
+    days = (equity.index[-1] - equity.index[0]).days
+    print(f"\nPERIODO:")
+    print(f"  Inizio:                          {equity.index[0].strftime('%Y-%m-%d')}")
+    print(f"  Fine:                            {equity.index[-1].strftime('%Y-%m-%d')}")
+    print(f"  Durata:                          {days} giorni ({days/365.25:.1f} anni)")
+    
+    print(f"{'='*60}")
+
+# ====================== MAIN ==========================================
+
+if __name__ == "__main__":
+    cfg = BacktestConfig(
+        initial_capital=10_000.0,
+        start_year=2010,
+        rolling_window=60,
+        min_periods=30,
+        entry_k_std=0.0,        # Compra sotto media
+        exit_k_std=1.0,         # Vendi sopra media+1std
+        
+        # GESTIONE PORTAFOGLIO OTTIMIZZATA
+        equal_position_sizing=True,
+        position_size_pct=0.02,  # 2% per posizione
+        max_positions=25,        # Max 25 posizioni
+        rebalance_frequency=21,  # Rebalance ogni 21 giorni
+        stop_loss_atr_mult=2.0,  # Stop loss a 2 ATR
+        take_profit_pct=0.15,    # Take profit a +15%
+        
+        transaction_cost_pct=0.001,  # 0.1% costi
+        atr_period=14
+    )
+    
+    print("Avvio strategia P/S ottimizzata...")
+    results = run_optimized_ps_strategy(cfg)
+    
+    print("\nBacktest completato!")

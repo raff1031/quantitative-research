@@ -1,0 +1,31 @@
+﻿Device: cuda - NVIDIA GeForce RTX 4050 Laptop GPU
+   VRAM: 6.4 GB
+
+============================================================
+  LSTM v2 - AAPL
+============================================================
+  Dataset: 345 settimane
+  Train: 276 (2018-05-28 - 2023-09-04)
+  Test:  69  (2023-09-11 - 2024-12-30)
+  X_train: (260, 16, 10), X_test: (53, 16, 10)
+  Parametri: 346,497
+  Epoch  10/60 | Train: 0.000302 | Val: 0.000202 | LR: 5.0e-04
+  Epoch  20/60 | Train: 0.000295 | Val: 0.000204 | LR: 2.5e-04
+  Early stopping @ epoch 22
+  Validation predictions std: 0.004157
+python : Traceback (most recent call last):
+In riga:1 car:1
++ python lstm_btc_v2.py 2>&1 | Out-File -Encoding utf8 lstm_results_cle ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\Users\roman\Desktop\quant\screener v2\lstm_btc_v2.py", line 465, in <module>
+    result = train_and_backtest(ticker)
+  File "C:\Users\roman\Desktop\quant\screener v2\lstm_btc_v2.py", line 375, in train_and_backtest
+    m_bh = calc_metrics(test_results['real_ret'], "Buy & Hold")
+  File "C:\Users\roman\Desktop\quant\screener v2\lstm_btc_v2.py", line 360, in calc_metrics
+    print(f"\n  {'\u2500'*38}")
+  File "C:\Users\roman\AppData\Local\Programs\Python\Python310\lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 4-41: character maps to <undefined>

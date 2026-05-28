@@ -1,0 +1,4 @@
+vedi una versione short del ORB 
+
+controlla se il lunedi ha un effetto più forte come giorno della settimana (accumolo di ordini/tensione)
+apertura sessione accumolo di ordini (pressure buy and sell ) controlla con vwap lavoro di JEAN 

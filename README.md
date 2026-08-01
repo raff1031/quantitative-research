@@ -1,6 +1,6 @@
 # Quantitative Research & Algorithmic Trading
 
-**Romano Raffaele** · MSc Data Science, Università degli Studi di Milano-Bicocca (Oct 2026)  
+**Romano Raffaele** · MSc Data Science, Università degli Studi di Milano-Bicocca (expected March 2027)  
 romano.raff10@gmail.com · Milano, Italy · [github.com/raff1031/quantitative-research](https://github.com/raff1031/quantitative-research)
 
 ---

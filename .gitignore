@@ -55,3 +55,8 @@ nul
 
 # Egg info
 *.egg-info/
+
+# Course / licensed datasets — never publish
+*.xlsm
+*.xls
+dual-momentum/data/

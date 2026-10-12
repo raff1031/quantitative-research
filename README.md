@@ -7,7 +7,7 @@ romano.raff10@gmail.com · Milano, Italy · [github.com/raff1031/quantitative-re
 
 Personal research and trading projects built from scratch between 2024 and 2026. The work covers futures and crypto systematic strategies, market making, stat-arb, and ML signal generation. Everything here was built, tested, and iterated on independently — not coursework.
 
-Out-of-sample validation is standard across all projects. Look-ahead bias is handled with purged/embargoed cross-validation or a fixed train/test split where all parameters are locked on training data before touching the test period.
+Validation differs by project and is stated in each section. The NinjaTrader strategies (FVG, ORB, Sweep Retracement, Pattern 5) are whole-history backtests with no out-of-sample split. The pairs, LSTM and XGBoost projects use a fixed train/test split or walk-forward folds with purge/embargo gaps; the look-ahead bug found in the LSTM screener is documented in its section.
 
 ---
 
@@ -29,11 +29,10 @@ Out-of-sample validation is standard across all projects. Look-ahead bias is han
 | ORB (10x30) | NQ | 1,103 | $93,660 | 0.75 | 62.9% | 1.18 | -$30,577 |
 | Sweep Retracement | NQ (9–16h) | 1,759 | $83,609 | 0.70 | 45.9% | 1.12 | -$18,343 |
 | Pattern 5 | ES, NQ | 482 | $123,065 | 0.43 | 52.5% | 1.38 | -$49,109 |
-| MASRS (HMM + TFT) | BTC/ETH Perps | walk-fwd OOS | — | 0.93 | — | — | -13.4% |
 
-FVG/ORB/Sweep/Pattern 5 were recomputed on 2026-10-12 from the full NinjaTrader 8 exports in this repo with `tools/recalc_stats.py`: one contract, whole-history backtests with no out-of-sample split, commissions as exported, no slippage. Sharpe is annualised from daily P&L with flat days counted as zero; Max DD is in dollars on the chronological cumulative P&L. MASRS is walk-forward OOS on Binance/Bybit live data.
+FVG/ORB/Sweep/Pattern 5 were recomputed on 2026-10-12 from the full NinjaTrader 8 exports in this repo with `tools/recalc_stats.py`: one contract, whole-history backtests with no out-of-sample split, commissions as exported, no slippage. Sharpe is annualised from daily P&L with flat days counted as zero; Max DD is in dollars on the chronological cumulative P&L.
 
-> **Correction (2026-10-12).** Earlier versions of this table reported Sharpe per trade rather than on daily P&L, and for ORB and Sweep the statistics covered only about 40% of the rows: the notebooks parsed `dd/mm/yyyy` dates month-first and dropped every row after the 12th of the month (923 of 2,273 rows for ORB, 1,092 of 2,709 for Sweep). The FVG row also included a second NQ run that was labelled ES. The figures above use every row. The charts in this README were generated before the correction and still reflect the earlier figures.
+> **Correction (2026-10-12).** Earlier versions of this table reported Sharpe per trade rather than on daily P&L, and for ORB and Sweep the statistics covered only about 40% of the rows: the notebooks parsed `dd/mm/yyyy` dates month-first and dropped every row after the 12th of the month (923 of 2,273 rows for ORB, 1,092 of 2,709 for Sweep). The FVG row also included a second NQ run that was labelled ES. The figures above use every row. A MASRS (HMM + TFT) row was removed because its code and results are not in this repository. The charts in this README were generated before the correction and still reflect the earlier figures.
 
 ---
 
@@ -255,4 +254,4 @@ The PEAD scaffold is designed for strict point-in-time integrity: signal availab
 
 ---
 
-All results are net of transaction costs and validated out-of-sample. Past performance doesn't guarantee future results.
+Costs and validation differ by project. The NinjaTrader results include commissions as exported (none in the first NQ FVG export), assume no slippage and have no out-of-sample split. Past performance doesn't guarantee future results.

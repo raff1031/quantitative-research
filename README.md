@@ -7,7 +7,7 @@ romano.raff10@gmail.com · Milano, Italy · [github.com/raff1031/quantitative-re
 
 Personal research and trading projects built from scratch between 2024 and 2026. The work covers futures and crypto systematic strategies, market making, stat-arb, and ML signal generation. Everything here was built, tested, and iterated on independently — not coursework.
 
-Out-of-sample validation is standard across all projects. Look-ahead bias is handled with purged/embargoed cross-validation or a fixed train/test split where all parameters are locked on training data before touching the test period.
+Validation differs by project and is stated in each section. The NinjaTrader strategies (FVG, ORB, Sweep Retracement, Pattern 5) are whole-history backtests with no out-of-sample split. The pairs, LSTM and XGBoost projects use a fixed train/test split or walk-forward folds with purge/embargo gaps; the look-ahead bug found in the LSTM screener is documented in its section.
 
 ---
 
@@ -21,16 +21,18 @@ Out-of-sample validation is standard across all projects. Look-ahead bias is han
 
 ![Drawdown Comparison](charts/drawdown_comparison.png)
 
-| Strategy | Instruments | Trades | Sharpe | Win Rate | Profit Factor | Max DD |
-|----------|-------------|--------|--------|----------|---------------|--------|
-| FVG | BTC, ES, NQ, FDAX, FESX, GC, NG | 6,222 | 1.25 | 44.6% | 1.30 | -4.9% |
-| ORB | NQ | 923 | 1.55 | 64.4% | 1.30 | -33.2% |
-| Sweep Retracement | NQ (6–7h) | 399 | **2.45** | **60.4%** | 1.56 | -21.1% |
-| Sweep Retracement | NQ (9–16h) | 693 | 1.35 | 48.2% | 1.25 | -20.8% |
-| Pattern 5 | ES, NQ | 482 | 1.53 | 52.5% | 1.38 | -22.2% |
-| MASRS (HMM + TFT) | BTC/ETH Perps | walk-fwd OOS | 0.93 | — | — | -13.4% |
+| Strategy | Instruments | Trades | Net P&L | Sharpe | Win Rate | Profit Factor | Max DD |
+|----------|-------------|--------|---------|--------|----------|---------------|--------|
+| FVG (six-market portfolio) | BTC, NQ, FDAX, FESX, GC, NG | 4,900 | $837,064 | 1.49 | 47.9% | 1.31 | -$49,610 |
+| Sweep Retracement | NQ (6–7h) | 950 | $28,594 | 1.05 | 58.9% | 1.30 | -$6,120 |
+| ORB (0x20) | NQ | 1,170 | $102,614 | 0.78 | 62.1% | 1.17 | -$34,077 |
+| ORB (10x30) | NQ | 1,103 | $93,660 | 0.75 | 62.9% | 1.18 | -$30,577 |
+| Sweep Retracement | NQ (9–16h) | 1,759 | $83,609 | 0.70 | 45.9% | 1.12 | -$18,343 |
+| Pattern 5 | ES, NQ | 482 | $123,065 | 0.43 | 52.5% | 1.38 | -$49,109 |
 
-All results net of transaction costs. FVG/ORB/Sweep/Pattern 5 from NinjaTrader 8 trade exports. MASRS is walk-forward OOS on Binance/Bybit live data.
+FVG/ORB/Sweep/Pattern 5 were recomputed on 2026-10-12 from the full NinjaTrader 8 exports in this repo with `tools/recalc_stats.py`: one contract, whole-history backtests with no out-of-sample split, commissions as exported, no slippage. Sharpe is annualised from daily P&L with flat days counted as zero; Max DD is in dollars on the chronological cumulative P&L.
+
+> **Correction (2026-10-12).** Earlier versions of this table reported Sharpe per trade rather than on daily P&L, and for ORB and Sweep the statistics covered only about 40% of the rows: the notebooks parsed `dd/mm/yyyy` dates month-first and dropped every row after the 12th of the month (923 of 2,273 rows for ORB, 1,092 of 2,709 for Sweep). The FVG row also included a second NQ run that was labelled ES. The figures above use every row. A MASRS (HMM + TFT) row was removed because its code and results are not in this repository. The charts in this README were generated before the correction and still reflect the earlier figures.
 
 ---
 
@@ -38,13 +40,15 @@ All results net of transaction costs. FVG/ORB/Sweep/Pattern 5 from NinjaTrader 8
 
 | Instrument | Trades | Net Profit | Avg Trade | Sharpe | Win Rate |
 |------------|--------|------------|-----------|--------|----------|
-| BTC | 648 | €323,209 | €498.8 | 1.82 | 40.7% |
-| FDAX | 1,140 | €227,832 | €199.9 | 1.24 | 50.2% |
-| NQ | 824 | €136,075 | €165.1 | 1.95 | 43.1% |
-| ES | 1,322 | €120,721 | €91.3 | 1.65 | 32.7% |
-| GC | 952 | €108,724 | €114.2 | 1.44 | 52.0% |
-| FESX | 479 | €20,689 | €43.2 | 2.08 | 55.9% |
-| NG | 857 | €20,535 | €23.96 | 1.24 | 45.6% |
+| BTC | 648 | $323,209 | $498.8 | 1.13 | 40.7% |
+| FDAX | 1,140 | $227,832 | $199.9 | 1.01 | 50.2% |
+| NQ | 824 | $136,075 | $165.1 | 1.30 | 43.1% |
+| NQ, second configuration (`ES m15.csv`) | 1,322 | $120,721 | $91.3 | 1.36 | 32.7% |
+| GC | 952 | $108,724 | $114.2 | 1.05 | 52.0% |
+| FESX | 479 | $20,689 | $43.2 | 1.08 | 55.9% |
+| NG | 857 | $20,535 | $23.96 | 0.63 | 45.6% |
+
+Amounts are in dollars, as in the exports. Commissions of $3.78–$15.92 per trade are included, except in the first NQ export, which carries none. NG runs from 2013, the others from 2019.
 
 ---
 
@@ -120,7 +124,7 @@ Final signal is the product of all five layers. Interactive Plotly dashboard inc
 ### 6. FVG Strategy
 `FVG csv/FVG.ipynb`
 
-ICT Fair Value Gap setups backtested systematically across BTC, ES, NQ, FDAX, FESX, GC, NG. Gaps identified from OHLC bars, entry on retest, exit at next imbalance or time stop. 6,222 trades total, Sharpe 1.25. Best single instrument by Sharpe is NQ (1.95), best by average trade is BTC (€498.8/trade).
+ICT Fair Value Gap setups backtested systematically across BTC, NQ, FDAX, FESX, GC, NG. Gaps identified from OHLC bars, entry on retest, exit at next imbalance or time stop. 4,900 trades across the six markets, portfolio Sharpe 1.49 on daily P&L; a second NQ configuration adds 1,322 trades. Best single instrument by Sharpe is NQ (1.30), best by average trade is BTC ($498.8/trade).
 
 ![FVG Equity Curves](charts/fvg_equity_curves.png)
 
@@ -133,7 +137,7 @@ ICT Fair Value Gap setups backtested systematically across BTC, ES, NQ, FDAX, FE
 ### 7. Open Range Breakout
 `csv orb/orb.ipynb`
 
-ORB on NQ 5-minute bars. Opening range is the first N bars after RTH open; entry on confirmed close outside range with BB confirmation. 923 trades, Sharpe 1.55, 64.4% win rate. Includes parameter grid with correlation analysis to check robustness across configurations.
+ORB on NQ 5-minute bars. Opening range is the first N bars after RTH open; entry on confirmed close outside range with BB confirmation. Two configurations over 2019–2025: 1,103 trades (Sharpe 0.75, 62.9% win rate) and 1,170 trades (Sharpe 0.78, 62.1% win rate). Includes parameter grid with correlation analysis to check robustness across configurations.
 
 ![ORB Equity Curve](charts/orb_equity_curve.png)
 
@@ -142,7 +146,7 @@ ORB on NQ 5-minute bars. Opening range is the first N bars after RTH open; entry
 ### 8. Sweep Retracement (NinjaTrader 8 / C#)
 `NT8 strat/HourSweepRetracement.cs`
 
-NinjaTrader 8 strategy in C# that detects hourly liquidity sweeps (stops taken above/below prior hour high/low) and enters on retracement back inside the range. Best configuration on NQ: Sharpe 2.45, win rate 60.4%, profit factor 1.56. Both long-bias and inverse variants in the repo.
+NinjaTrader 8 strategy in C# that detects hourly liquidity sweeps (stops taken above/below prior hour high/low) and enters on retracement back inside the range. Best configuration on NQ (6–7h): Sharpe 1.05, win rate 58.9%, profit factor 1.30. Both long-bias and inverse variants in the repo.
 
 ![Sweep Equity Curves](charts/sweep_equity_curves.png)
 
@@ -250,4 +254,4 @@ The PEAD scaffold is designed for strict point-in-time integrity: signal availab
 
 ---
 
-All results are net of transaction costs and validated out-of-sample. Past performance doesn't guarantee future results.
+Costs and validation differ by project. The NinjaTrader results include commissions as exported (none in the first NQ FVG export), assume no slippage and have no out-of-sample split. Past performance doesn't guarantee future results.
